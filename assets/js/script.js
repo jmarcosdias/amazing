@@ -1,15 +1,20 @@
 const firstInstructionToUser = 'Memorize the result of this problem';
-const roundInstructionToUser = 'Is the result of the below problem lower, same or higher than the previous?';
+const roundInstructionToUser = 'Is the result of the below problem lower, same as or higher than the previous?';
 const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 const lastRoundNumber = 3;
 let currentResult;
 let previousResult;
+let currentRoundNumber = 0;
 
 // Wait for the initial HTML document to load, add the event listeners and start the game
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btn-done').addEventListener('click', function () {
-        startRound(1);
+const lastRoundNumber = 3;
+        if (currentRoundNumber < lastRoundNumber)
+            startRound(++currentRoundNumber);
+        else
+            endGame();
     })
     startGame();
 });
@@ -36,9 +41,6 @@ function startRound(roundNumber) {
     previousResult = currentResult;
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
     document.getElementById('random-problem').innerHTML = createRandomProblem();
-
-    //if (roundNumber < lastRoundNumber)
-    //    startRound(++roundNumber);
 }
 
 /**
@@ -92,7 +94,19 @@ function createRandomProblem() {
 
     console.log('previousResult=' + previousResult);
     console.log('currentResult=' + currentResult);
+    console.log('currentRoundNumber=' + currentRoundNumber);
 
     // Return a string with the random problem
     return `${operand1} ${operators[operator]} ${operand2}`;
+}
+
+/**
+ * endGame()
+ * 
+ * 
+ */
+function endGame() {
+    document.getElementById('instruction-to-the-user').textContent = 'Game Over';
+    currentResult = undefined;
+    previousResult = undefined;
 }
