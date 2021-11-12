@@ -1,28 +1,44 @@
-const firstInstructionToTheUser = 'Memorize this problem';
+const firstInstructionToUser = 'Memorize the result of this problem';
+const roundInstructionToUser = 'Is the result of the below problem lower, same or higher than the previous?';
 const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
+const lastRoundNumber = 3;
 let currentResult;
+let previousResult;
 
-// Wait for the initial HTML document to load and then start the game
-document.addEventListener("DOMContentLoaded", function () {
+// Wait for the initial HTML document to load, add the event listeners and start the game
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('btn-done').addEventListener('click', function () {
+        startRound(1);
+    })
     startGame();
 });
 
 /**
  * Start a new game
  *
- * 1) The first instruction is presented to the user
- * 2) A random problem is presented to the user
- *
- * not yet implemented:
- * At this point nothing happens until the user presses the btn-done 
- * so that the first round will start.
+ * * The first instruction is presented to the user
+ * * A random problem is presented to the user
+ * * Nothing else happens until the user presses the btn-done
+ * * When the user presses btn-done, its call back method will start the first round
  */
 function startGame() {
-    document.getElementById("instruction-to-the-user").textContent = firstInstructionToTheUser;
-    document.getElementById("random-problem").innerHTML = createRandomProblem();
+    document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
+    document.getElementById('random-problem').innerHTML = createRandomProblem();
+}
 
-    console.log('currentResult=' + currentResult);
+/**
+ * Start a round
+ * 
+ */
+function startRound(roundNumber) {
+
+    previousResult = currentResult;
+    document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
+    document.getElementById('random-problem').innerHTML = createRandomProblem();
+
+    //if (roundNumber < lastRoundNumber)
+    //    startRound(++roundNumber);
 }
 
 /**
@@ -30,6 +46,10 @@ function startGame() {
  * 
  * Receives the current operands and the operator an then calculates 
  * the current result, saving it in a global variable
+ * 
+ * @param {number} operand1 - first operand
+ * @param {number} operator - operator (0=plus, 1=minus, 2=times, 3=divide)
+ * @param {number} operand2 - second operand
  */
 function setCurrentResult(operand1, operator, operand2) {
     switch (operator) {
@@ -69,6 +89,9 @@ function createRandomProblem() {
 
     // Set the current result value which is a global variable    
     setCurrentResult(operand1, operator, operand2);
+
+    console.log('previousResult=' + previousResult);
+    console.log('currentResult=' + currentResult);
 
     // Return a string with the random problem
     return `${operand1} ${operators[operator]} ${operand2}`;
