@@ -1,5 +1,5 @@
-const firstInstructionToUser = 'Memorize the result of this problem';
-const roundInstructionToUser = 'Is the result of the below problem lower, same as or higher than the previous?';
+const firstInstructionToUser = 'Memorize the result of the following problem';
+const roundInstructionToUser = 'Is the result of the following problem lower, same as or higher than the previous?';
 const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 const lastRoundNumber = 3;
@@ -18,11 +18,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (let button of buttons) {
         button.addEventListener('click', function () {
-            currentRoundNumber++;
-            if (currentRoundNumber < lastRoundNumber)
-                startRound(currentRoundNumber);
-            else
-                endGame();
+            document.getElementById('instruction-to-the-user').textContent = 'Okay you pressed a button but for now I am stupid';
+            document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
+            document.getElementById('btn-done').style.visibility = 'hidden';
+            document.getElementById('random-problem').style.visibility = 'hidden';
+
+            setTimeout(function() {
+                currentRoundNumber++;
+                if (currentRoundNumber < lastRoundNumber) {
+                    startRound(currentRoundNumber);
+                }
+                else {
+                    endGame();
+                }
+            }, 2000);
         })
     }
 
@@ -38,8 +47,17 @@ document.addEventListener('DOMContentLoaded', function () {
  * * When the user presses btn-done, its call back method will start the first round
  */
 function startGame() {
+    document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
+    document.getElementById('btn-done').style.visibility = 'hidden';
+    document.getElementById('random-problem').style.visibility = 'hidden';
+
     document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
-    document.getElementById('random-problem').innerHTML = createRandomProblem();
+
+    setTimeout(function() {
+        document.getElementById('random-problem').innerHTML = createRandomProblem();
+        document.getElementById('random-problem').style.visibility = 'visible';
+        document.getElementById('btn-done').style.visibility = 'visible';
+    }, 2000);
 }
 
 /**
@@ -49,8 +67,17 @@ function startGame() {
 function startRound(roundNumber) {
 
     previousResult = currentResult;
+    document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
+    document.getElementById('btn-done').style.visibility = 'hidden';
+    document.getElementById('random-problem').style.visibility = 'hidden';
+
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
-    document.getElementById('random-problem').innerHTML = createRandomProblem();
+    
+    setTimeout(function() {
+       document.getElementById('random-problem').innerHTML = createRandomProblem();
+       document.getElementById('random-problem').style.visibility = 'visible';
+       document.getElementById('lower-same-higher-area').style.visibility = 'visible';
+    }, 2000);
 }
 
 /**
