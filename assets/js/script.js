@@ -9,13 +9,23 @@ let currentRoundNumber = 0;
 
 // Wait for the initial HTML document to load, add the event listeners and start the game
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('btn-done').addEventListener('click', function () {
-const lastRoundNumber = 3;
-        if (currentRoundNumber < lastRoundNumber)
-            startRound(++currentRoundNumber);
-        else
-            endGame();
-    })
+    let buttons = [
+        document.getElementById('btn-done'),
+        document.getElementById('btn-lower'),
+        document.getElementById('btn-same'),
+        document.getElementById('btn-higher'),
+    ]; 
+
+    for (let button of buttons) {
+        button.addEventListener('click', function () {
+            currentRoundNumber++;
+            if (currentRoundNumber < lastRoundNumber)
+                startRound(currentRoundNumber);
+            else
+                endGame();
+        })
+    }
+
     startGame();
 });
 
