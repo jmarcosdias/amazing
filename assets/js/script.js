@@ -2,10 +2,12 @@ const firstInstructionToUser = 'Memorize the result of the following problem';
 const roundInstructionToUser = 'Is the result of the following problem lower, same as or higher than the previous?';
 const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
-const lastRoundNumber = 3;
+const numberOfRounds = 3;
 let currentResult;
 let previousResult;
-let currentRoundNumber = 0;
+let currentRoundNumber;
+let initialTime;
+let finalTime;
 
 // Wait for the initial HTML document to load, add the event listeners and start the game
 document.addEventListener('DOMContentLoaded', function () {
@@ -18,15 +20,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (let button of buttons) {
         button.addEventListener('click', function () {
-            document.getElementById('instruction-to-the-user').textContent = 'Okay you pressed a button but for now I am stupid';
+            if (button.id === 'btn-lower' || button.id === 'btn-same' || button.id === 'btn-higher') {
+                stopTiming();
+                document.getElementById('instruction-to-the-user').textContent = `You answered in ${finalTime - initialTime} miliseconds`;
+            }
+            
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
             document.getElementById('btn-done').style.visibility = 'hidden';
             document.getElementById('random-problem').style.visibility = 'hidden';
 
             setTimeout(function() {
                 currentRoundNumber++;
-                if (currentRoundNumber < lastRoundNumber) {
-                    startRound(currentRoundNumber);
+                if (currentRoundNumber <= numberOfRounds) {
+                    startRound();
                 }
                 else {
                     endGame();
@@ -34,6 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 2000);
         })
     }
+
+    document.getElementById('btn-restart').addEventListener('click', function () {
+        startGame();    
+    });
 
     startGame();
 });
@@ -47,8 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
  * * When the user presses btn-done, its call back method will start the first round
  */
 function startGame() {
+    currentRoundNumber = 0;
+    currentResult = undefined;
+    previousResult = undefined;
+    score = 0;
+
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
     document.getElementById('btn-done').style.visibility = 'hidden';
+    document.getElementById('btn-restart').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
@@ -64,7 +80,7 @@ function startGame() {
  * Start a round
  * 
  */
-function startRound(roundNumber) {
+function startRound() {
 
     previousResult = currentResult;
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
@@ -72,12 +88,29 @@ function startRound(roundNumber) {
     document.getElementById('random-problem').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
-    
+
     setTimeout(function() {
        document.getElementById('random-problem').innerHTML = createRandomProblem();
        document.getElementById('random-problem').style.visibility = 'visible';
        document.getElementById('lower-same-higher-area').style.visibility = 'visible';
+       startTiming();
     }, 2000);
+}
+
+/**
+ * Start counting the time an answer takes to be answered
+ * 
+ */
+ function startTiming() {
+     initialTime = new Date().getTime();
+ }
+
+/**
+ * Stop counting the time an answer takes to be answered
+ * 
+ */
+function stopTiming() {
+    finalTime = new Date().getTime();
 }
 
 /**
@@ -144,6 +177,5 @@ function createRandomProblem() {
  */
 function endGame() {
     document.getElementById('instruction-to-the-user').textContent = 'Game Over';
-    currentResult = undefined;
-    previousResult = undefined;
+    document.getElementById('btn-restart').style.visibility = 'visible';
 }
