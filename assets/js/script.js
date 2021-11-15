@@ -42,8 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
             document.getElementById('btn-done').style.visibility = 'hidden';
             document.getElementById('random-problem').style.visibility = 'hidden';
+            document.getElementById('btn-next-round').style.visibility = 'visible';
 
-            setTimeout(function() {
+            /*setTimeout(function() {
                 currentRoundNumber++;
                 if (currentRoundNumber <= numberOfRounds) {
                     startRound();
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 else {
                     endGame();
                 }
-            }, 3000);
+            }, 3000);*/
         })
     }
 
@@ -59,6 +60,17 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('btn-done').style.visibility = 'hidden';
         currentRoundNumber++;
         startRound();
+    });
+
+    document.getElementById('btn-next-round').addEventListener('click', function () {
+        document.getElementById('btn-next-round').style.visibility = 'hidden';
+        currentRoundNumber++;
+        if (currentRoundNumber <= numberOfRounds) {
+            startRound();
+        }
+        else {
+            endGame();
+        }
     });
 
     document.getElementById('btn-restart').addEventListener('click', function () {
@@ -85,9 +97,10 @@ function startGame() {
 
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
     document.getElementById('btn-done').style.visibility = 'hidden';
+    document.getElementById('btn-next-round').style.visibility = 'hidden';
     document.getElementById('btn-restart').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
-
+    
     document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
     document.getElementById('random-problem').innerHTML = createRandomProblem();
     document.getElementById('random-problem').style.visibility = 'visible';
@@ -103,6 +116,7 @@ function startRound() {
     previousResult = currentResult;
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
     document.getElementById('btn-done').style.visibility = 'hidden';
+    document.getElementById('btn-next-round').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
@@ -194,10 +208,6 @@ function createRandomProblem() {
 
     // Set the current result value which is a global variable    
     setCurrentResult(operand1, operator, operand2);
-
-    console.log('previousResult=' + previousResult);
-    console.log('currentResult=' + currentResult);
-    console.log('currentRoundNumber=' + currentRoundNumber);
 
     // Return a string with the random problem
     return `${operand1} ${operators[operator]} ${operand2}`;
