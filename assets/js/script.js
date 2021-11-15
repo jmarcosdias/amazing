@@ -1,18 +1,22 @@
+// Constants
 const firstInstructionToUser = 'Memorize the result of the following problem';
 const roundInstructionToUser = 'Is the result of the following problem lower, same as or higher than the previous?';
 const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 const numberOfRounds = 3;
+
+// Global variables
 let currentResult;
 let previousResult;
 let currentRoundNumber;
 let initialTime;
 let finalTime;
+let score = 0;
 
 // Wait for the initial HTML document to load, add the event listeners and start the game
 document.addEventListener('DOMContentLoaded', function () {
+
     let buttons = [
-        document.getElementById('btn-done'),
         document.getElementById('btn-lower'),
         document.getElementById('btn-same'),
         document.getElementById('btn-higher'),
@@ -20,11 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (let button of buttons) {
         button.addEventListener('click', function () {
-            if (button.id === 'btn-lower' || button.id === 'btn-same' || button.id === 'btn-higher') {
-                stopTiming();
-                let answerIsCorrect = isAnswerCorrect(button.id.substring(4));
-                document.getElementById('instruction-to-the-user').textContent = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}. You answered in ${finalTime - initialTime} miliseconds.`;
+            stopTiming();
+            let answerIsCorrect = isAnswerCorrect(button.id.substring(4));
+            let infoToUser = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}. You answered in ${finalTime - initialTime} miliseconds.`;
+            let pointsNow = 0;
+
+            if (answerIsCorrect) {
+                // The number of points earned in each round starts at 1 and is inversely proportional to the time taken to respond.
+                pointsNow = Math.max(Math.round(10000/(finalTime - initialTime), 0), 1);
+                score += pointsNow;
+                document.getElementById('score').textContent = score;
             }
+
+            infoToUser += ` You did ${pointsNow} points in this round.`;
+            document.getElementById('instruction-to-the-user').textContent = infoToUser;
             
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
             document.getElementById('btn-done').style.visibility = 'hidden';
@@ -38,9 +51,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 else {
                     endGame();
                 }
-            }, 2000);
+            }, 3000);
         })
     }
+
+    document.getElementById('btn-done').addEventListener('click', function () {
+        document.getElementById('btn-done').style.visibility = 'hidden';
+        currentRoundNumber++;
+        startRound();
+    });
 
     document.getElementById('btn-restart').addEventListener('click', function () {
         startGame();    
@@ -62,6 +81,7 @@ function startGame() {
     currentResult = undefined;
     previousResult = undefined;
     score = 0;
+    document.getElementById('score').textContent = score;
 
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
     document.getElementById('btn-done').style.visibility = 'hidden';
@@ -69,12 +89,9 @@ function startGame() {
     document.getElementById('random-problem').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
-
-    setTimeout(function() {
-        document.getElementById('random-problem').innerHTML = createRandomProblem();
-        document.getElementById('random-problem').style.visibility = 'visible';
-        document.getElementById('btn-done').style.visibility = 'visible';
-    }, 2000);
+    document.getElementById('random-problem').innerHTML = createRandomProblem();
+    document.getElementById('random-problem').style.visibility = 'visible';
+    document.getElementById('btn-done').style.visibility = 'visible';
 }
 
 /**
