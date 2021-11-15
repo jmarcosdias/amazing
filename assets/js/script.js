@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             if (button.id === 'btn-lower' || button.id === 'btn-same' || button.id === 'btn-higher') {
                 stopTiming();
-                document.getElementById('instruction-to-the-user').textContent = `You answered in ${finalTime - initialTime} miliseconds`;
+                let answerIsCorrect = isAnswerCorrect(button.id.substring(4));
+                document.getElementById('instruction-to-the-user').textContent = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}. You answered in ${finalTime - initialTime} miliseconds.`;
             }
             
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
@@ -111,6 +112,21 @@ function startRound() {
  */
 function stopTiming() {
     finalTime = new Date().getTime();
+}
+
+/**
+ * Check if the answer is correct
+ * 
+ */
+function isAnswerCorrect(answer) {
+    switch(answer) {
+        case 'lower':
+            return currentResult < previousResult;
+        case 'higher':
+            return currentResult > previousResult;
+        default: // same
+            return currentResult === previousResult;
+    }
 }
 
 /**
