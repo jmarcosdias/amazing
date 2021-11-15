@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             infoToUser += ` You did ${pointsNow} points in this round.`;
-            document.getElementById('instruction-to-the-user').textContent = infoToUser;
+            document.getElementById('information-to-the-user').textContent = infoToUser;
+            document.getElementById('information-to-the-user').style.visibility = 'visible';
             
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
             document.getElementById('btn-done').style.visibility = 'hidden';
@@ -100,6 +101,7 @@ function startGame() {
     document.getElementById('btn-next-round').style.visibility = 'hidden';
     document.getElementById('btn-restart').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
+    document.getElementById('information-to-the-user').style.visibility = 'hidden';
     
     document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
     document.getElementById('random-problem').innerHTML = createRandomProblem();
@@ -118,6 +120,7 @@ function startRound() {
     document.getElementById('btn-done').style.visibility = 'hidden';
     document.getElementById('btn-next-round').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
+    document.getElementById('information-to-the-user').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
 
@@ -219,6 +222,7 @@ function createRandomProblem() {
  * 
  */
 function endGame() {
-    document.getElementById('instruction-to-the-user').textContent = 'Game Over';
+    document.getElementById('information-to-the-user').textContent = 'Game Over';
+    document.getElementById('information-to-the-user').style.visibility = 'visible';
     document.getElementById('btn-restart').style.visibility = 'visible';
 }
