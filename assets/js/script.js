@@ -6,7 +6,9 @@ const maxOperand = 10;
 const numberOfRounds = 3;
 
 // Global variables
+let currentProblem;
 let currentResult;
+let previousProblem;
 let previousResult;
 let currentRoundNumber;
 let initialTime;
@@ -36,35 +38,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('score').textContent = score;
             }
 
-            infoToUser += ` You did ${pointsNow} points in this round.`;
+            infoToUser += ` You scored ${pointsNow} points in this round.`;
             document.getElementById('information-to-the-user').textContent = infoToUser;
             document.getElementById('information-to-the-user').style.visibility = 'visible';
             
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
-            document.getElementById('btn-done').style.visibility = 'hidden';
+            document.getElementById('instruction-to-the-user').style.visibility = 'hidden';
+            document.getElementById('done').style.visibility = 'hidden';
             document.getElementById('random-problem').style.visibility = 'hidden';
-            document.getElementById('btn-next-round').style.visibility = 'visible';
-
-            /*setTimeout(function() {
-                currentRoundNumber++;
-                if (currentRoundNumber <= numberOfRounds) {
-                    startRound();
-                }
-                else {
-                    endGame();
-                }
-            }, 3000);*/
+            document.getElementById('next-round').style.visibility = 'visible';
         })
     }
 
     document.getElementById('btn-done').addEventListener('click', function () {
-        document.getElementById('btn-done').style.visibility = 'hidden';
+        document.getElementById('done').style.visibility = 'hidden';
         currentRoundNumber++;
         startRound();
     });
 
     document.getElementById('btn-next-round').addEventListener('click', function () {
-        document.getElementById('btn-next-round').style.visibility = 'hidden';
+        document.getElementById('next-round').style.visibility = 'hidden';
         currentRoundNumber++;
         if (currentRoundNumber <= numberOfRounds) {
             startRound();
@@ -91,22 +84,25 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 function startGame() {
     currentRoundNumber = 0;
+    currentProblem = undefined;
     currentResult = undefined;
+    previousProblem = undefined;
     previousResult = undefined;
     score = 0;
     document.getElementById('score').textContent = score;
 
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
-    document.getElementById('btn-done').style.visibility = 'hidden';
-    document.getElementById('btn-next-round').style.visibility = 'hidden';
-    document.getElementById('btn-restart').style.visibility = 'hidden';
+    document.getElementById('done').style.visibility = 'hidden';
+    document.getElementById('next-round').style.visibility = 'hidden';
+    document.getElementById('restart').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
     document.getElementById('information-to-the-user').style.visibility = 'hidden';
     
     document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
+    document.getElementById('instruction-to-the-user').style.visibility = 'visible';
     document.getElementById('random-problem').innerHTML = createRandomProblem();
     document.getElementById('random-problem').style.visibility = 'visible';
-    document.getElementById('btn-done').style.visibility = 'visible';
+    document.getElementById('done').style.visibility = 'visible';
 }
 
 /**
@@ -116,13 +112,15 @@ function startGame() {
 function startRound() {
 
     previousResult = currentResult;
+    previousProblem = currentProblem;
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
-    document.getElementById('btn-done').style.visibility = 'hidden';
-    document.getElementById('btn-next-round').style.visibility = 'hidden';
+    document.getElementById('done').style.visibility = 'hidden';
+    document.getElementById('next-round').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
     document.getElementById('information-to-the-user').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
+    document.getElementById('instruction-to-the-user').style.visibility = 'visible';
 
     setTimeout(function() {
        document.getElementById('random-problem').innerHTML = createRandomProblem();
@@ -194,8 +192,9 @@ function setCurrentResult(operand1, operator, operand2) {
  * 
  * 1) Set local variables for the operands and operator
  * 2) Make sure operand1 > operand2 for the subtraction and division
- * 3) Set the current result value which is a global variable
- * 4) Return a string with the random problem
+ * 3) Set the current problem value which is a global variable
+ * 4) Set the current result value which is a global variable
+ * 5) Return a string with the random problem
  */
 function createRandomProblem() {
 
@@ -209,11 +208,14 @@ function createRandomProblem() {
         [operand1, operand2] = [operand2, operand1];
     }
 
-    // Set the current result value which is a global variable    
+    // Set the current problem value which is a global variable
+    currentProblem = `${operand1} ${operators[operator]} ${operand2}`
+
+    // Set the current result value which is a global variable
     setCurrentResult(operand1, operator, operand2);
 
     // Return a string with the random problem
-    return `${operand1} ${operators[operator]} ${operand2}`;
+    return currentProblem;
 }
 
 /**
@@ -224,5 +226,5 @@ function createRandomProblem() {
 function endGame() {
     document.getElementById('information-to-the-user').textContent = 'Game Over';
     document.getElementById('information-to-the-user').style.visibility = 'visible';
-    document.getElementById('btn-restart').style.visibility = 'visible';
+    document.getElementById('restart').style.visibility = 'visible';
 }
