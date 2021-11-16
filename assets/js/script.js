@@ -27,26 +27,38 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let button of buttons) {
         button.addEventListener('click', function () {
             stopTiming();
-            let answerIsCorrect = isAnswerCorrect(button.id.substring(4));
-            let infoToUser = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}. You answered in ${finalTime - initialTime} miliseconds.`;
+            let userAnswer = button.id.substring(4);
+            let answerIsCorrect = isAnswerCorrect(userAnswer);
+            let infoToUser = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}.`;
             let pointsNow = 0;
+
+            if (userAnswer === 'same') {
+                userAnswer = 'same as';
+            } else {
+                userAnswer = userAnswer + ' than'
+            }
 
             if (answerIsCorrect) {
                 // The number of points earned in each round starts at 1 and is inversely proportional to the time taken to respond.
                 pointsNow = Math.max(Math.round(10000/(finalTime - initialTime), 0), 1);
                 score += pointsNow;
                 document.getElementById('score').textContent = score;
+
+                infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.`;
+                infoToUser += ` You answered in ${finalTime - initialTime} miliseconds.`;
+            } else {
+                infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.`
             }
 
-            infoToUser += ` You scored ${pointsNow} points in this round.`;
-            document.getElementById('information-to-the-user').textContent = infoToUser;
+            infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
+            document.getElementById('information-to-the-user').innerHTML = infoToUser;
             document.getElementById('information-to-the-user').style.visibility = 'visible';
             
             document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
             document.getElementById('instruction-to-the-user').style.visibility = 'hidden';
             document.getElementById('done').style.visibility = 'hidden';
             document.getElementById('random-problem').style.visibility = 'hidden';
-            document.getElementById('next-round').style.visibility = 'visible';
+            document.getElementById('ok').style.visibility = 'visible';
         })
     }
 
@@ -56,8 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
         startRound();
     });
 
-    document.getElementById('btn-next-round').addEventListener('click', function () {
-        document.getElementById('next-round').style.visibility = 'hidden';
+    document.getElementById('btn-ok').addEventListener('click', function () {
+        document.getElementById('ok').style.visibility = 'hidden';
         currentRoundNumber++;
         if (currentRoundNumber <= numberOfRounds) {
             startRound();
@@ -89,20 +101,28 @@ function startGame() {
     previousProblem = undefined;
     previousResult = undefined;
     score = 0;
-    document.getElementById('score').textContent = score;
 
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
     document.getElementById('done').style.visibility = 'hidden';
-    document.getElementById('next-round').style.visibility = 'hidden';
+    document.getElementById('ok').style.visibility = 'hidden';
     document.getElementById('restart').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
     document.getElementById('information-to-the-user').style.visibility = 'hidden';
+    document.getElementById('score-area').style.visibility = 'hidden';
+    document.getElementById('round-area').style.visibility = 'hidden';
+
+    document.getElementById('h1').innerHTML = 'Are you <em>Amazingly Fast</em> at solving math problems?';
+
+    setTimeout(function() {
+        document.getElementById('h1').innerHTML = 'Amazingly Fast';
+
+        document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
+        document.getElementById('instruction-to-the-user').style.visibility = 'visible';
+        document.getElementById('random-problem').innerHTML = createRandomProblem();
+        document.getElementById('random-problem').style.visibility = 'visible';
+        document.getElementById('done').style.visibility = 'visible';
+     }, 2000);
     
-    document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
-    document.getElementById('instruction-to-the-user').style.visibility = 'visible';
-    document.getElementById('random-problem').innerHTML = createRandomProblem();
-    document.getElementById('random-problem').style.visibility = 'visible';
-    document.getElementById('done').style.visibility = 'visible';
 }
 
 /**
@@ -115,12 +135,17 @@ function startRound() {
     previousProblem = currentProblem;
     document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
     document.getElementById('done').style.visibility = 'hidden';
-    document.getElementById('next-round').style.visibility = 'hidden';
+    document.getElementById('ok').style.visibility = 'hidden';
     document.getElementById('random-problem').style.visibility = 'hidden';
     document.getElementById('information-to-the-user').style.visibility = 'hidden';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
+    
+    document.getElementById('score').textContent = score;
+    document.getElementById('round').textContent = currentRoundNumber;
     document.getElementById('instruction-to-the-user').style.visibility = 'visible';
+    document.getElementById('score-area').style.visibility = 'visible';
+    document.getElementById('round-area').style.visibility = 'visible';
 
     setTimeout(function() {
        document.getElementById('random-problem').innerHTML = createRandomProblem();
