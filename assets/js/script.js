@@ -52,24 +52,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
             infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
             document.getElementById('information-to-the-user').innerHTML = infoToUser;
-            document.getElementById('information-to-the-user').style.visibility = 'visible';
+            document.getElementById('information-to-the-user').style.display = 'block';
             
-            document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
-            document.getElementById('instruction-to-the-user').style.visibility = 'hidden';
-            document.getElementById('done').style.visibility = 'hidden';
-            document.getElementById('random-problem').style.visibility = 'hidden';
-            document.getElementById('ok').style.visibility = 'visible';
+            document.getElementById('lower-same-higher-area').style.display = 'none';
+            document.getElementById('instruction-to-the-user').style.display = 'none';
+            document.getElementById('done').style.display = 'none';
+            document.getElementById('random-problem').style.display = 'none';
+            document.getElementById('ok').style.display = 'block';
         })
     }
 
     document.getElementById('btn-done').addEventListener('click', function () {
-        document.getElementById('done').style.visibility = 'hidden';
+        document.getElementById('done').style.display = 'none';
         currentRoundNumber++;
         startRound();
     });
 
     document.getElementById('btn-ok').addEventListener('click', function () {
-        document.getElementById('ok').style.visibility = 'hidden';
+        document.getElementById('ok').style.display = 'none';
         currentRoundNumber++;
         if (currentRoundNumber <= numberOfRounds) {
             startRound();
@@ -102,14 +102,14 @@ function startGame() {
     previousResult = undefined;
     score = 0;
 
-    document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
-    document.getElementById('done').style.visibility = 'hidden';
-    document.getElementById('ok').style.visibility = 'hidden';
-    document.getElementById('restart').style.visibility = 'hidden';
-    document.getElementById('random-problem').style.visibility = 'hidden';
-    document.getElementById('information-to-the-user').style.visibility = 'hidden';
-    document.getElementById('score-area').style.visibility = 'hidden';
-    document.getElementById('round-area').style.visibility = 'hidden';
+    document.getElementById('lower-same-higher-area').style.display = 'none';
+    document.getElementById('done').style.display = 'none';
+    document.getElementById('ok').style.display = 'none';
+    document.getElementById('restart').style.display = 'none';
+    document.getElementById('random-problem').style.display = 'none';
+    document.getElementById('information-to-the-user').style.display = 'none';
+    document.getElementById('score-area').style.display = 'none';
+    document.getElementById('round-area').style.display = 'none';
 
     document.getElementById('h1').innerHTML = 'Are you <em>Amazingly Fast</em> at solving math problems?';
 
@@ -117,10 +117,10 @@ function startGame() {
         document.getElementById('h1').innerHTML = 'Amazingly Fast';
 
         document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
-        document.getElementById('instruction-to-the-user').style.visibility = 'visible';
+        document.getElementById('instruction-to-the-user').style.display = 'block';
         document.getElementById('random-problem').innerHTML = createRandomProblem();
-        document.getElementById('random-problem').style.visibility = 'visible';
-        document.getElementById('done').style.visibility = 'visible';
+        document.getElementById('random-problem').style.display = 'block';
+        document.getElementById('done').style.display = 'block';
      }, 2000);
     
 }
@@ -133,24 +133,24 @@ function startRound() {
 
     previousResult = currentResult;
     previousProblem = currentProblem;
-    document.getElementById('lower-same-higher-area').style.visibility = 'hidden';
-    document.getElementById('done').style.visibility = 'hidden';
-    document.getElementById('ok').style.visibility = 'hidden';
-    document.getElementById('random-problem').style.visibility = 'hidden';
-    document.getElementById('information-to-the-user').style.visibility = 'hidden';
+    document.getElementById('lower-same-higher-area').style.display = 'none';
+    document.getElementById('done').style.display = 'none';
+    document.getElementById('ok').style.display = 'none';
+    document.getElementById('random-problem').style.display = 'none';
+    document.getElementById('information-to-the-user').style.display = 'none';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
     
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
-    document.getElementById('instruction-to-the-user').style.visibility = 'visible';
-    document.getElementById('score-area').style.visibility = 'visible';
-    document.getElementById('round-area').style.visibility = 'visible';
+    document.getElementById('instruction-to-the-user').style.display = 'block';
+    document.getElementById('score-area').style.display = 'block';
+    document.getElementById('round-area').style.display = 'block';
 
     setTimeout(function() {
        document.getElementById('random-problem').innerHTML = createRandomProblem();
-       document.getElementById('random-problem').style.visibility = 'visible';
-       document.getElementById('lower-same-higher-area').style.visibility = 'visible';
+       document.getElementById('random-problem').style.display = 'block';
+       document.getElementById('lower-same-higher-area').style.display = 'block';
        startTiming();
     }, 2000);
 }
@@ -250,6 +250,6 @@ function createRandomProblem() {
  */
 function endGame() {
     document.getElementById('information-to-the-user').textContent = 'Game Over';
-    document.getElementById('information-to-the-user').style.visibility = 'visible';
-    document.getElementById('restart').style.visibility = 'visible';
+    document.getElementById('information-to-the-user').style.display = 'block';
+    document.getElementById('restart').style.display = 'block';
 }
