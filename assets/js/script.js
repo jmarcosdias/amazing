@@ -1,13 +1,73 @@
-// Constants
-const firstInstructionToUser = 'Memorize the result of the following problem';
-const roundInstructionToUser = 'Is the result of the following problem lower, same as or higher than the previous?';
-const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
-const maxOperand = 10;
-const numberOfRounds = 3;
+/*********************************************************************************************************************
+  Amazingly Fast Game
 
-// Global variables
+  Overview
+  --------
+
+  There are 10 rounds. 
+  
+  A first random math problem is presented to the user, before the first round. The user is asked to memorize it.
+  
+  Each round another random math problem is presented to the user and the user is asked to answer if the result of 
+  the current problem is lower than, same as or higher than the result of the previous problem.
+
+  Each correct answer scores from 1 to 100 points, depending on how faster it was.
+  
+  1 point means it was answered in 10 seconds or more.
+
+  100 points means it was answered in 100 miliseconds or less.
+
+  Here is the formula to calculate the number of points each round, with timeToAnswer given in miliseconds:
+  Math.max(Math.round(10000/(Math.max(timeToAnswer, 100)), 0), 1)
+
+  Each incorrect answer scores 0 points.
+
+  Credits
+  -------
+  
+  The developer asked his friends in a WhatsApp group and one of his friends, named Chris Fawcett, came with a 
+  suggestion. The developer took that suggestion and adapted to create the game. Thanks to Chris Fawcett for 
+  coming up with that first idea.
+
+  Some callback functions in this code are based on what the developer learned with the Code Institute's Love 
+  Maths game. Thanks to the Code Institute for this and for the wonderful training.
+
+
+  History
+  -------
+
+  Developer         Date         Comments
+  ----------------  -----------  -------------------------------------------------------------------------------------
+  Marcos Dias       22-NOV-2021  Initial creation
+
+ *********************************************************************************************************************/
+
+/*** Constants *******************************************************************************************************/
+
+// Instruction presented to the user before the first round.
+const firstInstructionToUser = 'Memorize the result of the following problem';
+
+// Instruction presented to the user in the beginning of each round.
+const roundInstructionToUser = 'Is the result of the following problem lower, same as or higher than the previous?';
+
+// Array with the four operators (addition, subtraction, multiplication and division) used along the game.
+const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
+
+// Maximum value for each operand. The minimum value is 1.
+const maxOperand = 10;
+
+// Number of rounds in the game
+const numberOfRounds = 10;
+
+/*** Global Variables ************************************************************************************************/
+
+// String that will contain the current problem. This value will change randomly each round.
 let currentProblem;
+
+// String that will contain the previous problem. This value is copied from currentProblem each round.
 let currentResult;
+
+// ... to be continued soon
 let previousProblem;
 let previousResult;
 let currentRoundNumber;
@@ -22,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('btn-lower'),
         document.getElementById('btn-same'),
         document.getElementById('btn-higher'),
-    ]; 
+    ];
 
     for (let button of buttons) {
         button.addEventListener('click', function () {
@@ -38,14 +98,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 userAnswer = userAnswer + ' than'
             }
 
+            let timeToAnswer = finalTime - initialTime;
+
             if (answerIsCorrect) {
-                // The number of points earned in each round starts at 1 and is inversely proportional to the time taken to respond.
-                pointsNow = Math.max(Math.round(10000/(finalTime - initialTime), 0), 1);
+                // The number of points earned in each round is inversely proportional to 
+                // the time taken to respond and it ranges from 1 to 100 points
+                pointsNow = Math.max(Math.round(10000 / (Math.max(timeToAnswer, 100)), 0), 1);
                 score += pointsNow;
                 document.getElementById('score').textContent = score;
 
                 infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.`;
-                infoToUser += ` You answered in ${finalTime - initialTime} miliseconds.`;
+                infoToUser += ` You answered in ${timeToAnswer} miliseconds.`;
             } else {
                 infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.`
             }
@@ -53,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
             document.getElementById('information-to-the-user').innerHTML = infoToUser;
             document.getElementById('information-to-the-user').style.display = 'block';
-            
+
             document.getElementById('lower-same-higher-area').style.display = 'none';
             document.getElementById('instruction-to-the-user').style.display = 'none';
             document.getElementById('done').style.display = 'none';
@@ -73,14 +136,13 @@ document.addEventListener('DOMContentLoaded', function () {
         currentRoundNumber++;
         if (currentRoundNumber <= numberOfRounds) {
             startRound();
-        }
-        else {
+        } else {
             endGame();
         }
     });
 
     document.getElementById('btn-restart').addEventListener('click', function () {
-        startGame();    
+        startGame();
     });
 
     startGame();
@@ -113,7 +175,7 @@ function startGame() {
 
     document.getElementById('h1').innerHTML = 'Are you <em>Amazingly Fast</em> at solving math problems?';
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById('h1').innerHTML = 'Amazingly Fast';
 
         document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
@@ -121,8 +183,8 @@ function startGame() {
         document.getElementById('random-problem').innerHTML = createRandomProblem();
         document.getElementById('random-problem').style.display = 'block';
         document.getElementById('done').style.display = 'block';
-     }, 2000);
-    
+    }, 2000);
+
 }
 
 /**
@@ -140,18 +202,18 @@ function startRound() {
     document.getElementById('information-to-the-user').style.display = 'none';
 
     document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
-    
+
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
     document.getElementById('instruction-to-the-user').style.display = 'block';
     document.getElementById('score-area').style.display = 'block';
     document.getElementById('round-area').style.display = 'block';
 
-    setTimeout(function() {
-       document.getElementById('random-problem').innerHTML = createRandomProblem();
-       document.getElementById('random-problem').style.display = 'block';
-       document.getElementById('lower-same-higher-area').style.display = 'block';
-       startTiming();
+    setTimeout(function () {
+        document.getElementById('random-problem').innerHTML = createRandomProblem();
+        document.getElementById('random-problem').style.display = 'block';
+        document.getElementById('lower-same-higher-area').style.display = 'block';
+        startTiming();
     }, 2000);
 }
 
@@ -159,9 +221,9 @@ function startRound() {
  * Start counting the time an answer takes to be answered
  * 
  */
- function startTiming() {
-     initialTime = new Date().getTime();
- }
+function startTiming() {
+    initialTime = new Date().getTime();
+}
 
 /**
  * Stop counting the time an answer takes to be answered
@@ -176,7 +238,7 @@ function stopTiming() {
  * 
  */
 function isAnswerCorrect(answer) {
-    switch(answer) {
+    switch (answer) {
         case 'lower':
             return currentResult < previousResult;
         case 'higher':
