@@ -22,15 +22,16 @@
 
   Each incorrect answer scores 0 points.
 
-  Credits
-  -------
+  Developer Credit Notes
+  ----------------------
   
-  The developer asked his friends in a WhatsApp group and one of his friends, named Chris Fawcett, came with a 
-  suggestion. The developer took that suggestion and adapted to create the game. Thanks to Chris Fawcett for 
-  coming up with that first idea.
+  I have asked my friends in a WhatsApp group and one of them, named Chris Fawcett, came up with a suggestion.
+  I took and adapted that suggestion to create the game. Thanks to Chris Fawcett for coming up with that first
+  idea which I could turn into what the Amazingly Fast game is now.
 
-  Some callback functions in this code are based on what the developer learned with the Code Institute's Love 
-  Maths game. Thanks to the Code Institute for this and for the wonderful training.
+  Some callback functions in this code are based on what I have learned with the Code Institute's Love Maths game.
+  Thanks to the Code Institute and to my mentor Chris Quinn for the excellent training and valuable advices given
+  along the mentor sessions.
 
 
   History
@@ -42,7 +43,7 @@
 
  *********************************************************************************************************************/
 
-/*** Constants *******************************************************************************************************/
+/*** Global Variables ************************************************************************************************/
 
 // Instruction presented to the user before the first round.
 const firstInstructionToUser = 'Memorize the result of the following problem';
@@ -59,20 +60,28 @@ const maxOperand = 10;
 // Number of rounds in the game
 const numberOfRounds = 10;
 
-/*** Global Variables ************************************************************************************************/
-
-// String that will contain the current problem. This value will change randomly each round.
+// String with the current problem. This value changes randomly each round.
 let currentProblem;
 
-// String that will contain the previous problem. This value is copied from currentProblem each round.
+// Number with the result of currentProblem.
 let currentResult;
 
-// ... to be continued soon
+// String with the previous problem. This value is copied from currentProblem each round.
 let previousProblem;
+
+// Number with the result of previousProblem. This value is copied from currentResult each round.
 let previousResult;
+
+// Number of the current round.
 let currentRoundNumber;
+
+// Initial time used to calculate the time to answer.
 let initialTime;
+
+// Final time used to calculate the time to answer.
 let finalTime;
+
+// Score of the game.
 let score = 0;
 
 // Wait for the initial HTML document to load, add the event listeners and start the game
