@@ -123,11 +123,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
-            document.getElementById('information-to-the-user').innerHTML = infoToUser;
-            document.getElementById('information-to-the-user').style.display = 'block';
+            document.getElementById('information-to-user').innerHTML = infoToUser;
+            document.getElementById('information-to-user').style.display = 'block';
 
             document.getElementById('lower-same-higher-area').style.display = 'none';
-            document.getElementById('instruction-to-the-user').style.display = 'none';
+            document.getElementById('instruction-to-user').style.display = 'none';
             document.getElementById('done').style.display = 'none';
             document.getElementById('random-problem').style.display = 'none';
             document.getElementById('ok').style.display = 'block';
@@ -178,7 +178,7 @@ function startGame() {
     document.getElementById('ok').style.display = 'none';
     document.getElementById('restart').style.display = 'none';
     document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('information-to-the-user').style.display = 'none';
+    document.getElementById('information-to-user').style.display = 'none';
     document.getElementById('score-area').style.display = 'none';
     document.getElementById('round-area').style.display = 'none';
 
@@ -187,8 +187,8 @@ function startGame() {
     setTimeout(function () {
         document.getElementById('h1').innerHTML = 'Amazingly Fast';
 
-        document.getElementById('instruction-to-the-user').textContent = firstInstructionToUser;
-        document.getElementById('instruction-to-the-user').style.display = 'block';
+        document.getElementById('instruction-to-user').textContent = firstInstructionToUser;
+        document.getElementById('instruction-to-user').style.display = 'block';
         document.getElementById('random-problem').innerHTML = createRandomProblem();
         document.getElementById('random-problem').style.display = 'block';
         document.getElementById('done').style.display = 'block';
@@ -208,13 +208,13 @@ function startRound() {
     document.getElementById('done').style.display = 'none';
     document.getElementById('ok').style.display = 'none';
     document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('information-to-the-user').style.display = 'none';
+    document.getElementById('information-to-user').style.display = 'none';
 
-    document.getElementById('instruction-to-the-user').textContent = roundInstructionToUser;
+    document.getElementById('instruction-to-user').textContent = roundInstructionToUser;
 
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
-    document.getElementById('instruction-to-the-user').style.display = 'block';
+    document.getElementById('instruction-to-user').style.display = 'block';
     document.getElementById('score-area').style.display = 'block';
     document.getElementById('round-area').style.display = 'block';
 
@@ -320,7 +320,7 @@ function createRandomProblem() {
  * 
  */
 function endGame() {
-    document.getElementById('information-to-the-user').textContent = 'Game Over';
-    document.getElementById('information-to-the-user').style.display = 'block';
+    document.getElementById('information-to-user').textContent = 'Game Over';
+    document.getElementById('information-to-user').style.display = 'block';
     document.getElementById('restart').style.display = 'block';
 }
