@@ -13,12 +13,12 @@
 
   Each correct answer scores from 1 to 100 points, depending on how faster it was.
   
-  1 point means it was answered in 10 seconds or more.
+  10 point means it was answered in about 10 seconds or more.
 
-  100 points means it was answered in 100 miliseconds or less.
+  1000 points means it was answered in 100 miliseconds or less.
 
   Here is the formula to calculate the number of points each round, with timeToAnswer given in miliseconds:
-  Math.max(Math.round(10000/(Math.max(timeToAnswer, 100)), 0), 1)
+  Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10)
 
   Each incorrect answer scores 0 points.
 
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (answerIsCorrect) {
                 // The number of points earned in each round is inversely proportional to 
-                // the time taken to respond and it ranges from 1 to 100 points
-                pointsNow = Math.max(Math.round(10000 / (Math.max(timeToAnswer, 100)), 0), 1);
+                // the time taken to respond and it ranges from 10 to 1000 points
+                pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
                 score += pointsNow;
                 document.getElementById('score').textContent = score;
 
