@@ -58,7 +58,7 @@ const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 
 // Number of rounds in the game
-const numberOfRounds = 10;
+const numberOfRounds = 3;
 
 // String with the current problem. This value changes randomly each round.
 let currentProblem;
@@ -143,11 +143,10 @@ function btnLowerSameHigherClick(button) {
     }
 
     infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
-    document.getElementById('information-to-user').innerHTML = infoToUser;
-    document.getElementById('information-to-user').style.display = 'block';
+    document.getElementById('message-to-user').innerHTML = infoToUser;
+    document.getElementById('message-to-user').style.display = 'block';
 
     document.getElementById('lower-same-higher-area').style.display = 'none';
-    document.getElementById('instruction-to-user').style.display = 'none';
     document.getElementById('done').style.display = 'none';
     document.getElementById('random-problem').style.display = 'none';
     document.getElementById('ok').style.display = 'block';
@@ -179,18 +178,16 @@ function startGame() {
     document.getElementById('ok').style.display = 'none';
     document.getElementById('restart').style.display = 'none';
     document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('information-to-user').style.display = 'none';
-    document.getElementById('instruction-to-user').style.display = 'none';
+    document.getElementById('message-to-user').style.display = 'none';
     document.getElementById('score-area').style.display = 'none';
     document.getElementById('round-area').style.display = 'none';
 
-    document.getElementById('h1').innerHTML = 'Are you <em>Amazingly Fast</em> at solving math problems?';
+    document.getElementById('message-to-user').innerHTML = 'Are you <em>Amazingly Fast</em> at solving math problems?';
+    document.getElementById('message-to-user').style.display = 'block';
 
     setTimeout(function () {
-        document.getElementById('h1').innerHTML = 'Amazingly Fast';
-
-        document.getElementById('instruction-to-user').textContent = firstInstructionToUser;
-        document.getElementById('instruction-to-user').style.display = 'block';
+        document.getElementById('message-to-user').textContent = firstInstructionToUser;
+        document.getElementById('message-to-user').style.display = 'block';
         document.getElementById('random-problem').innerHTML = createRandomProblem();
         document.getElementById('random-problem').style.display = 'block';
         document.getElementById('done').style.display = 'block';
@@ -216,13 +213,13 @@ function startRound() {
     document.getElementById('done').style.display = 'none';
     document.getElementById('ok').style.display = 'none';
     document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('information-to-user').style.display = 'none';
+    document.getElementById('message-to-user').style.display = 'none';
 
-    document.getElementById('instruction-to-user').textContent = roundInstructionToUser;
+    document.getElementById('message-to-user').textContent = roundInstructionToUser;
 
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
-    document.getElementById('instruction-to-user').style.display = 'block';
+    document.getElementById('message-to-user').style.display = 'block';
     document.getElementById('score-area').style.display = 'block';
     document.getElementById('round-area').style.display = 'block';
 
@@ -328,7 +325,7 @@ function createRandomProblem() {
  * 
  */
 function endGame() {
-    document.getElementById('information-to-user').textContent = 'Game Over';
-    document.getElementById('information-to-user').style.display = 'block';
+    document.getElementById('message-to-user').textContent = 'Game Over';
+    document.getElementById('message-to-user').style.display = 'block';
     document.getElementById('restart').style.display = 'block';
 }

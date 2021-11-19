@@ -2,15 +2,21 @@
     margin: 0;
     padding: 0;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+}
+
+#div-container-title {
+    color: blue;
+    text-align: center;
+    height: 2em;
 }
 
 #div-container-messages-to-user {
-    height: 7em;
+    height: 5em;
 }
 
 #div-messages-to-user {
-    border: dotted 0.2em blue;
+    border: dotted 0.5em blue;
     background-color:aquamarine;
     border-radius: 2em;
     margin: auto;
