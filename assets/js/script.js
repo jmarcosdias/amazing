@@ -95,59 +95,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (let button of buttons) {
         button.addEventListener('click', function () {
-            stopTiming();
-            let userAnswer = button.id.substring(4);
-            let answerIsCorrect = isAnswerCorrect(userAnswer);
-            let infoToUser = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}.`;
-            let pointsNow = 0;
-
-            if (userAnswer === 'same') {
-                userAnswer = 'same as';
-            } else {
-                userAnswer = userAnswer + ' than'
-            }
-
-            let timeToAnswer = finalTime - initialTime;
-
-            if (answerIsCorrect) {
-                // The number of points earned in each round is inversely proportional to 
-                // the time taken to respond and it ranges from 10 to 1000 points
-                pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
-                score += pointsNow;
-                document.getElementById('score').textContent = score;
-
-                infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.`;
-                infoToUser += ` You answered in ${timeToAnswer} miliseconds.`;
-            } else {
-                infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.`
-            }
-
-            infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
-            document.getElementById('information-to-user').innerHTML = infoToUser;
-            document.getElementById('information-to-user').style.display = 'block';
-
-            document.getElementById('lower-same-higher-area').style.display = 'none';
-            document.getElementById('instruction-to-user').style.display = 'none';
-            document.getElementById('done').style.display = 'none';
-            document.getElementById('random-problem').style.display = 'none';
-            document.getElementById('ok').style.display = 'block';
+            btnLowerSameHigherClick(button);
         })
     }
 
     document.getElementById('btn-done').addEventListener('click', function () {
-        document.getElementById('done').style.display = 'none';
-        currentRoundNumber++;
-        startRound();
+        btnOkOrDoneClick('done');
     });
 
     document.getElementById('btn-ok').addEventListener('click', function () {
-        document.getElementById('ok').style.display = 'none';
-        currentRoundNumber++;
-        if (currentRoundNumber <= numberOfRounds) {
-            startRound();
-        } else {
-            endGame();
-        }
+        btnOkOrDoneClick('ok');
     });
 
     document.getElementById('btn-restart').addEventListener('click', function () {
@@ -156,6 +113,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startGame();
 });
+
+function btnLowerSameHigherClick(button) {
+    stopTiming();
+    let userAnswer = button.id.substring(4);
+    let answerIsCorrect = isAnswerCorrect(userAnswer);
+    let infoToUser = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}.`;
+    let pointsNow = 0;
+
+    if (userAnswer === 'same') {
+        userAnswer = 'same as';
+    } else {
+        userAnswer = userAnswer + ' than'
+    }
+
+    let timeToAnswer = finalTime - initialTime;
+
+    if (answerIsCorrect) {
+        // The number of points earned in each round is inversely proportional to 
+        // the time taken to respond and it ranges from 10 to 1000 points
+        pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
+        score += pointsNow;
+        document.getElementById('score').textContent = score;
+
+        infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.`;
+        infoToUser += ` You answered in ${timeToAnswer} miliseconds.`;
+    } else {
+        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.`
+    }
+
+    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
+    document.getElementById('information-to-user').innerHTML = infoToUser;
+    document.getElementById('information-to-user').style.display = 'block';
+
+    document.getElementById('lower-same-higher-area').style.display = 'none';
+    document.getElementById('instruction-to-user').style.display = 'none';
+    document.getElementById('done').style.display = 'none';
+    document.getElementById('random-problem').style.display = 'none';
+    document.getElementById('ok').style.display = 'block';
+}
+
+function btnOkOrDoneClick(okOrDone) {
+    document.getElementById(okOrDone).style.display = 'none';
+    startRound();
+}
 
 /**
  * Start a new game
@@ -179,6 +180,7 @@ function startGame() {
     document.getElementById('restart').style.display = 'none';
     document.getElementById('random-problem').style.display = 'none';
     document.getElementById('information-to-user').style.display = 'none';
+    document.getElementById('instruction-to-user').style.display = 'none';
     document.getElementById('score-area').style.display = 'none';
     document.getElementById('round-area').style.display = 'none';
 
@@ -201,6 +203,12 @@ function startGame() {
  * 
  */
 function startRound() {
+
+    currentRoundNumber++;
+    if (currentRoundNumber > numberOfRounds) {
+        endGame();
+        return;
+    }
 
     previousResult = currentResult;
     previousProblem = currentProblem;
