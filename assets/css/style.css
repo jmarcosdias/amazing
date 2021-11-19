@@ -82,6 +82,10 @@ header, main, footer {
     min-height: 32px;
 }
 
+.btn:hover {
+    color: blueviolet;
+}
+
 @keyframes yes-btn-animation {
     10%   { background-color: blue;        border-color: blue}
     20%   { background-color: red;         border-color: red}
