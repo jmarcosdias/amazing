@@ -12,11 +12,26 @@ header, main, footer {
     min-width: 300px;
 }
 
+@keyframes title-animation {
+    10%   { color: blue; }
+    20%   { color: red; }
+    30%   { color: green; }
+    40%   { color: tomato; }
+    50%   { color: yellowgreen; }
+    60%   { color: blue; }
+    70%   { color: red; }
+    80%   { color: green; }
+    90%   { color: tomato; }
+    100%  { color: yellowgreen; }
+}
+
 #container-title {
     letter-spacing: 0.5em;
     margin: 0.1em;
     color: blue;
     text-align:center;
+    animation-name: title-animation;
+    animation-duration: 2s;
 }
 
 #container-yes {
@@ -65,6 +80,24 @@ header, main, footer {
     margin: 0.5em;
     padding: 0.5em;
     min-height: 32px;
+}
+
+@keyframes yes-btn-animation {
+    10%   { background-color: blue;        border-color: blue}
+    20%   { background-color: red;         border-color: red}
+    30%   { background-color: green;       border-color: green}
+    40%   { background-color: tomato;      border-color: tomato}
+    50%   { background-color: yellowgreen; border-color: yellowgreen}
+    60%   { background-color: blue;        border-color: blue}
+    70%   { background-color: red;         border-color: red}
+    80%   { background-color: green;       border-color: green}
+    90%   { background-color: tomato;      border-color: tomato}
+    100%  { background-color: yellowgreen; border-color: yellowgreen}
+}
+
+#btn-yes {
+    animation-name: yes-btn-animation;
+    animation-duration: 2s;
 }
 
 /****************************************************************************************
