@@ -37,3 +37,18 @@
     text-align:center;
     min-height: 32px;
 }
+
+.btn-area {
+    text-align:center;
+}
+
+.btn {
+    background-color: orange;
+    border: solid 0.5em orange;
+    font-weight: bold;
+    border-radius: 2em;
+    color: mintcream;
+    margin: 1em;
+    padding: 1em;
+    min-height: 32px;
+}
