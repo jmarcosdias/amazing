@@ -64,7 +64,8 @@ header, main, footer {
     color: blue;
     margin: 1em;
     padding: 1em;
-    text-align:center;
+    text-align: center;
+    font-size: large;
 }
 
 .btn-area {
@@ -83,7 +84,7 @@ header, main, footer {
 }
 
 .btn:hover {
-    color: blueviolet;
+    color: blue;
 }
 
 @keyframes yes-btn-animation {

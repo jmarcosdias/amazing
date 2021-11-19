@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('btn-restart').addEventListener('click', function () {
-        startGame();
+        location.reload();
     });
 
     startGame();
@@ -219,23 +219,23 @@ function startRound() {
     document.getElementById('container-lower-same-higher').style.display = 'none';
     document.getElementById('done').style.display = 'none';
     document.getElementById('container-ok').style.display = 'none';
-    document.getElementById('container-random-problem').style.display = 'none';
     document.getElementById('container-message-to-user').style.display = 'none';
 
     document.getElementById('message-to-user').textContent = roundInstructionToUser;
+    document.getElementById('random-problem').textContent = '?';
 
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
     document.getElementById('container-message-to-user').style.display = 'block';
+    document.getElementById('container-random-problem').style.display = 'block';   
+    document.getElementById('container-lower-same-higher').style.display = 'block'; 
     document.getElementById('score-area').style.display = 'block';
     document.getElementById('round-area').style.display = 'block';
 
     setTimeout(function () {
         document.getElementById('random-problem').innerHTML = createRandomProblem();
-        document.getElementById('container-random-problem').style.display = 'block';
-        document.getElementById('container-lower-same-higher').style.display = 'block';
         startTiming();
-    }, 2000);
+    }, 3000);
 }
 
 /**
