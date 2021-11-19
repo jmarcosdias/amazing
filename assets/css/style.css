@@ -5,6 +5,7 @@
     padding: 0;
     border: none;
     font-family: 'Happy Monkey', cursive;
+    box-sizing: border-box;
 }
 
 header, main, footer {
@@ -103,6 +104,25 @@ header, main, footer {
 #btn-yes {
     animation-name: yes-btn-animation;
     animation-duration: 2s;
+}
+
+#container-score, #container-round {   
+    background-color:aquamarine;
+    border: dotted 0.5em blue;
+    border-radius: 2em;
+    color: blue;
+    margin: 1em;
+    padding: 1em;
+    text-align:center;
+    min-width: 35%;
+}
+
+#container-round {
+    float: left;
+}
+
+#container-score {
+    float: right;
 }
 
 /****************************************************************************************

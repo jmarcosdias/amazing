@@ -195,8 +195,8 @@ function startGame() {
     document.getElementById('container-restart').style.display = 'none';
     document.getElementById('container-random-problem').style.display = 'none';
     document.getElementById('container-message-to-user').style.display = 'none';
-    document.getElementById('score-area').style.display = 'none';
-    document.getElementById('round-area').style.display = 'none';
+    document.getElementById('container-score').style.display = 'none';
+    document.getElementById('container-round').style.display = 'none';
 
     document.getElementById('message-to-user').innerHTML = startScreenMessage;
     document.getElementById('container-message-to-user').style.display = 'block';
@@ -229,8 +229,8 @@ function startRound() {
     document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('container-random-problem').style.display = 'block';   
     document.getElementById('container-lower-same-higher').style.display = 'block'; 
-    document.getElementById('score-area').style.display = 'block';
-    document.getElementById('round-area').style.display = 'block';
+    document.getElementById('container-score').style.display = 'block';
+    document.getElementById('container-round').style.display = 'block';
 
     setTimeout(function () {
         document.getElementById('random-problem').innerHTML = createRandomProblem();
