@@ -134,7 +134,7 @@ function btnLowerSameHigherClick(button) {
     stopTiming();
     let userAnswer = button.id.substring(4);
     let answerIsCorrect = isAnswerCorrect(userAnswer);
-    let infoToUser = `${answerIsCorrect?'Great!':'Next time will be better'}<br>`;
+    let infoToUser = `${answerIsCorrect?'<em><strong><mark>Great!</mark></strong></em>':'<em>Next time will be better</em>'}.<br><br>`;
     let pointsNow = 0;
 
     if (userAnswer === 'same') {
@@ -144,6 +144,7 @@ function btnLowerSameHigherClick(button) {
     }
 
     let timeToAnswer = finalTime - initialTime;
+    let amazinglyFast = (timeToAnswer < 2000) && answerIsCorrect;
 
     if (answerIsCorrect) {
         // The number of points earned in each round is inversely proportional to 
@@ -152,13 +153,13 @@ function btnLowerSameHigherClick(button) {
         score += pointsNow;
         document.getElementById('score').textContent = score;
 
-        infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.`;
-        infoToUser += ` You answered in ${timeToAnswer} miliseconds.`;
+        infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
+        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${timeToAnswer} miliseconds${amazinglyFast?'!!!':'.'}<br><br>`;
     } else {
-        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.`
+        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}<br><br>`
     }
 
-    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round.`;
+    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} ${amazinglyFast?'. Well done!!!':'Cool!'} <br><br>`;
     document.getElementById('message-to-user').innerHTML = infoToUser;
     document.getElementById('message-to-user').style.display = 'block';
 
