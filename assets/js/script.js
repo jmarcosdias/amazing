@@ -90,6 +90,10 @@ let score = 0;
 // Wait for the initial HTML document to load, add the event listeners and start the game
 document.addEventListener('DOMContentLoaded', function () {
 
+    document.getElementById('btn-yes').addEventListener('click', function () {
+        btnYesClick('container-ok');
+    });
+
     let buttons = [
         document.getElementById('btn-lower'),
         document.getElementById('btn-same'),
@@ -116,6 +120,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startGame();
 });
+
+function btnYesClick() {
+    document.getElementById('container-yes').style.display = 'none';
+    document.getElementById('message-to-user').textContent = firstInstructionToUser;
+    document.getElementById('random-problem').innerHTML = createRandomProblem();
+    document.getElementById('container-message-to-user').style.display = 'block';
+    document.getElementById('container-random-problem').style.display = 'block';
+    document.getElementById('done').style.display = 'block';
+}
 
 function btnLowerSameHigherClick(button) {
     stopTiming();
@@ -187,15 +200,6 @@ function startGame() {
 
     document.getElementById('message-to-user').innerHTML = startScreenMessage;
     document.getElementById('container-message-to-user').style.display = 'block';
-
-    setTimeout(function () {
-        document.getElementById('message-to-user').textContent = firstInstructionToUser;
-        document.getElementById('container-message-to-user').style.display = 'block';
-        document.getElementById('random-problem').innerHTML = createRandomProblem();
-        document.getElementById('container-random-problem').style.display = 'block';
-        document.getElementById('done').style.display = 'block';
-    }, 2000);
-
 }
 
 /**

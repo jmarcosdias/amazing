@@ -19,6 +19,19 @@ header, main, footer {
     text-align:center;
 }
 
+#container-yes {
+    background-image: url('../images/numbers-circle.png');
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;
+    height: 50vw;
+    width: 50vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #container-message-to-user {   
     background-color:aquamarine;
     border: dotted 0.5em blue;
