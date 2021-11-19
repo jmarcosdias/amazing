@@ -1,25 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     border: none;
+    font-family: 'Happy Monkey', cursive;
     font-size: 1.2rem;
 }
 
 #div-container-title {
+    margin: 1em;
+    letter-spacing: 0.5em;
     color: blue;
-    text-align: center;
     height: 2em;
+    text-align:center;
 }
 
-#div-container-messages-to-user {
-    height: 5em;
-}
-
-#div-messages-to-user {
-    border: dotted 0.5em blue;
+#div-container-message-to-user {   
     background-color:aquamarine;
+    border: dotted 0.5em blue;
     border-radius: 2em;
-    margin: auto;
+    color: blue;
+    margin: 1em;
     padding: 1em;
     text-align:center;
+    min-height: 32px;
+}
+
+#div-container-random-problem {   
+    background-color: hsl(60, 100%, 50%);
+    border: solid 0.5em yellow;
+    border-radius: 2em;
+    color: blue;
+    margin: 1em;
+    padding: 1em;
+    text-align:center;
+    min-height: 32px;
 }
