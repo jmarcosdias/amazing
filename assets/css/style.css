@@ -1,6 +1,19 @@
-div, span, button, h1 {
-    background-color: aquamarine;
-    border-color: blueviolet; 
-    padding: 0.5rem;
-    margin: 0.5rem;
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1.5rem;
+}
+
+#div-container-messages-to-user {
+    height: 7em;
+}
+
+#div-messages-to-user {
+    border: dotted 0.2em blue;
+    background-color:aquamarine;
+    border-radius: 2em;
+    margin: auto;
+    padding: 1em;
+    text-align:center;
 }
