@@ -45,6 +45,9 @@
 
 /*** Global Variables ************************************************************************************************/
 
+// This is the message that appears in the starting screen as a way to introduce the game
+const startScreenMessage = 'Are you <em>Amazingly Fast</em> at solving math problems?';
+
 // Instruction presented to the user before the first round.
 const firstInstructionToUser = 'Memorize the result of the following problem';
 
@@ -104,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('btn-ok').addEventListener('click', function () {
-        btnOkOrDoneClick('ok');
+        btnOkOrDoneClick('container-ok');
     });
 
     document.getElementById('btn-restart').addEventListener('click', function () {
@@ -146,10 +149,10 @@ function btnLowerSameHigherClick(button) {
     document.getElementById('message-to-user').innerHTML = infoToUser;
     document.getElementById('message-to-user').style.display = 'block';
 
-    document.getElementById('lower-same-higher-area').style.display = 'none';
+    document.getElementById('container-lower-same-higher').style.display = 'none';
     document.getElementById('done').style.display = 'none';
-    document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('ok').style.display = 'block';
+    document.getElementById('container-random-problem').style.display = 'none';
+    document.getElementById('container-ok').style.display = 'block';
 }
 
 function btnOkOrDoneClick(okOrDone) {
@@ -173,23 +176,23 @@ function startGame() {
     previousResult = undefined;
     score = 0;
 
-    document.getElementById('lower-same-higher-area').style.display = 'none';
+    document.getElementById('container-lower-same-higher').style.display = 'none';
     document.getElementById('done').style.display = 'none';
-    document.getElementById('ok').style.display = 'none';
-    document.getElementById('restart').style.display = 'none';
-    document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('message-to-user').style.display = 'none';
+    document.getElementById('container-ok').style.display = 'none';
+    document.getElementById('container-restart').style.display = 'none';
+    document.getElementById('container-random-problem').style.display = 'none';
+    document.getElementById('container-message-to-user').style.display = 'none';
     document.getElementById('score-area').style.display = 'none';
     document.getElementById('round-area').style.display = 'none';
 
-    document.getElementById('message-to-user').innerHTML = 'Are you <em>Amazingly Fast</em> at solving math problems?';
-    document.getElementById('message-to-user').style.display = 'block';
+    document.getElementById('message-to-user').innerHTML = startScreenMessage;
+    document.getElementById('container-message-to-user').style.display = 'block';
 
     setTimeout(function () {
         document.getElementById('message-to-user').textContent = firstInstructionToUser;
-        document.getElementById('message-to-user').style.display = 'block';
+        document.getElementById('container-message-to-user').style.display = 'block';
         document.getElementById('random-problem').innerHTML = createRandomProblem();
-        document.getElementById('random-problem').style.display = 'block';
+        document.getElementById('container-random-problem').style.display = 'block';
         document.getElementById('done').style.display = 'block';
     }, 2000);
 
@@ -209,24 +212,24 @@ function startRound() {
 
     previousResult = currentResult;
     previousProblem = currentProblem;
-    document.getElementById('lower-same-higher-area').style.display = 'none';
+    document.getElementById('container-lower-same-higher').style.display = 'none';
     document.getElementById('done').style.display = 'none';
-    document.getElementById('ok').style.display = 'none';
-    document.getElementById('random-problem').style.display = 'none';
-    document.getElementById('message-to-user').style.display = 'none';
+    document.getElementById('container-ok').style.display = 'none';
+    document.getElementById('container-random-problem').style.display = 'none';
+    document.getElementById('container-message-to-user').style.display = 'none';
 
     document.getElementById('message-to-user').textContent = roundInstructionToUser;
 
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
-    document.getElementById('message-to-user').style.display = 'block';
+    document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('score-area').style.display = 'block';
     document.getElementById('round-area').style.display = 'block';
 
     setTimeout(function () {
         document.getElementById('random-problem').innerHTML = createRandomProblem();
-        document.getElementById('random-problem').style.display = 'block';
-        document.getElementById('lower-same-higher-area').style.display = 'block';
+        document.getElementById('container-random-problem').style.display = 'block';
+        document.getElementById('container-lower-same-higher').style.display = 'block';
         startTiming();
     }, 2000);
 }
@@ -326,6 +329,6 @@ function createRandomProblem() {
  */
 function endGame() {
     document.getElementById('message-to-user').textContent = 'Game Over';
-    document.getElementById('message-to-user').style.display = 'block';
-    document.getElementById('restart').style.display = 'block';
+    document.getElementById('container-message-to-user').style.display = 'block';
+    document.getElementById('container-restart').style.display = 'block';
 }

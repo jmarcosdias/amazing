@@ -12,14 +12,14 @@ header, main, footer {
     min-width: 300px;
 }
 
-#div-container-title {
+#container-title {
     letter-spacing: 0.5em;
     margin: 0.1em;
     color: blue;
     text-align:center;
 }
 
-#div-container-message-to-user {   
+#container-message-to-user {   
     background-color:aquamarine;
     border: dotted 0.5em blue;
     border-radius: 2em;
@@ -29,7 +29,7 @@ header, main, footer {
     text-align:center;
 }
 
-#div-container-random-problem {   
+#container-random-problem {   
     background-color: hsl(60, 100%, 50%);
     border: solid 0.5em yellow;
     border-radius: 2em;
