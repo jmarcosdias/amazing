@@ -134,7 +134,7 @@ function btnLowerSameHigherClick(button) {
     stopTiming();
     let userAnswer = button.id.substring(4);
     let answerIsCorrect = isAnswerCorrect(userAnswer);
-    let infoToUser = `Your answer is ${answerIsCorrect?'Correct':'Incorrect'}.`;
+    let infoToUser = `${answerIsCorrect?'Great!':'Next time will be better'}<br>`;
     let pointsNow = 0;
 
     if (userAnswer === 'same') {
@@ -224,6 +224,10 @@ function startRound() {
     document.getElementById('message-to-user').textContent = roundInstructionToUser;
     document.getElementById('random-problem').textContent = '?';
 
+    document.getElementById('btn-lower').disabled = true;
+    document.getElementById('btn-same').disabled = true;
+    document.getElementById('btn-higher').disabled = true;
+
     document.getElementById('score').textContent = score;
     document.getElementById('round').textContent = currentRoundNumber;
     document.getElementById('container-message-to-user').style.display = 'block';
@@ -234,6 +238,9 @@ function startRound() {
 
     setTimeout(function () {
         document.getElementById('random-problem').innerHTML = createRandomProblem();
+        document.getElementById('btn-lower').disabled = false;
+        document.getElementById('btn-same').disabled = false;
+        document.getElementById('btn-higher').disabled = false;
         startTiming();
     }, 3000);
 }
