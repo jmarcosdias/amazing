@@ -5,14 +5,17 @@
     padding: 0;
     border: none;
     font-family: 'Happy Monkey', cursive;
-    font-size: 1.2rem;
+}
+
+header, main, footer {
+    /* bad user experience if smaller */
+    min-width: 300px;
 }
 
 #div-container-title {
-    margin: 1em;
     letter-spacing: 0.5em;
+    margin: 0.1em;
     color: blue;
-    height: 2em;
     text-align:center;
 }
 
@@ -24,7 +27,6 @@
     margin: 1em;
     padding: 1em;
     text-align:center;
-    min-height: 32px;
 }
 
 #div-container-random-problem {   
@@ -35,7 +37,6 @@
     margin: 1em;
     padding: 1em;
     text-align:center;
-    min-height: 32px;
 }
 
 .btn-area {
@@ -44,11 +45,25 @@
 
 .btn {
     background-color: orange;
-    border: solid 0.5em orange;
+    border: solid 0.2em orange;
     font-weight: bold;
     border-radius: 2em;
     color: mintcream;
-    margin: 1em;
-    padding: 1em;
+    margin: 0.5em;
+    padding: 0.5em;
     min-height: 32px;
 }
+
+/****************************************************************************************
+Rules for screen sizes from 400px wide and up                                               
+****************************************************************************************/
+
+@media screen and (min-width: 400px) {
+   
+    .btn {
+        border: solid 0.5em orange;
+        margin: 1em;
+        padding: 1em;
+    }
+}
+
