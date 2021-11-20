@@ -55,7 +55,7 @@ header, main, footer {
     color: blue;
     margin: 1em;
     padding: 1em;
-    text-align:center;
+    text-align: center;
 }
 
 #container-random-problem {   
@@ -136,5 +136,33 @@ Rules for screen sizes from 400px wide and up
     .btn {
         margin: 1em;
     }
+}
+
+/****************************************************************************************
+Rules for screen sizes from 900px wide and up                                               
+****************************************************************************************/
+
+@media screen and (min-width: 900px) {
+
+    #container-yes {
+        height: 450px;
+        width: 450px;
+    }
+
+    .btn {
+        border-radius: 50%;
+        font-size: x-large;
+        min-width: 7em;
+        min-height: 7em;
+    }
+
+    #container-message-to-user, #container-random-problem {  
+        font-size: x-large;
+    }
+   
+    #container-score, #container-round {
+        font-size: large;
+    }
+
 }
 
