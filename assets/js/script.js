@@ -156,10 +156,10 @@ function btnLowerSameHigherClick(button) {
         infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
         infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${timeToAnswer} miliseconds${amazinglyFast?'!!!':'.'}<br><br>`;
     } else {
-        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}<br><br>`
+        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`
     }
 
-    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} ${amazinglyFast?'. Well done!!!':'Cool!'} <br><br>`;
+    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'}. ${amazinglyFast?'Well done &#128077 &#128077 &#128077':'Nice &#128077'} <br><br>`;
     document.getElementById('message-to-user').innerHTML = infoToUser;
     document.getElementById('message-to-user').style.display = 'block';
 

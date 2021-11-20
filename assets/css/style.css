@@ -75,12 +75,12 @@ header, main, footer {
 
 .btn {
     background-color: orange;
-    border: solid 0.2em orange;
+    border: solid 0.5em orange;
     font-weight: bold;
     border-radius: 2em;
     color: mintcream;
     margin: 0.5em;
-    padding: 0.5em;
+    padding: 1em;
     min-height: 32px;
 }
 
@@ -132,9 +132,7 @@ Rules for screen sizes from 400px wide and up
 @media screen and (min-width: 400px) {
    
     .btn {
-        border: solid 0.5em orange;
         margin: 1em;
-        padding: 1em;
     }
 }
 
