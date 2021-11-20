@@ -152,7 +152,7 @@ function btnLowerSameHigherClick(button) {
         // the time taken to respond and it ranges from 10 to 1000 points
         pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
         score += pointsNow;
-        document.getElementById('score').innerHtml = score;
+        document.getElementById('score').textContent = score;
 
         let textTime = timeToAnswer>10000?'more than 10 seconds':`${timeToAnswer} miliseconds`;
 
@@ -232,7 +232,7 @@ function startRound() {
     document.getElementById('btn-same').disabled = true;
     document.getElementById('btn-higher').disabled = true;
 
-    document.getElementById('score').innerHtml = score;
+    document.getElementById('score').textContent = score;
     document.getElementById('round').innerHTML = `${currentRoundNumber} of ${numberOfRounds}`;
     document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('container-random-problem').style.display = 'block';   
