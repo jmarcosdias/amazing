@@ -61,7 +61,7 @@ const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 
 // Number of rounds in the game
-const numberOfRounds = 1;
+const numberOfRounds = 10;
 
 // String with the current problem. This value changes randomly each round.
 let currentProblem;
