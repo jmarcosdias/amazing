@@ -111,18 +111,20 @@ header, main, footer {
     border: dotted 0.5em blue;
     border-radius: 2em;
     color: blue;
-    margin: 1em;
     padding: 1em;
     text-align:center;
     min-width: 35%;
+    font-size: small;
 }
 
 #container-round {
     float: left;
+    margin: 1em 0 1em 1em;
 }
 
 #container-score {
     float: right;
+    margin: 1em 1em 1em 0;
 }
 
 /****************************************************************************************

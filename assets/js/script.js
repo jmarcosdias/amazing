@@ -61,7 +61,7 @@ const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 
 // Number of rounds in the game
-const numberOfRounds = 3;
+const numberOfRounds = 10;
 
 // String with the current problem. This value changes randomly each round.
 let currentProblem;
@@ -153,13 +153,15 @@ function btnLowerSameHigherClick(button) {
         score += pointsNow;
         document.getElementById('score').textContent = score;
 
+        let textTime = timeToAnswer>10000?'more than 10 seconds':`${timeToAnswer} miliseconds`;
+
         infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
-        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${timeToAnswer} miliseconds${amazinglyFast?'!!!':'.'}<br><br>`;
+        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${textTime}${amazinglyFast?'!!!':'.'}<br><br>`;
     } else {
         infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`
     }
 
-    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'}. ${amazinglyFast?'Well done &#128077 &#128077 &#128077':'Nice &#128077'} <br><br>`;
+    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'}. ${amazinglyFast?'Well done &#128077 &#128077 &#128077':pointsNow>0?'Nice &#128077':''}`;
     document.getElementById('message-to-user').innerHTML = infoToUser;
     document.getElementById('message-to-user').style.display = 'block';
 
