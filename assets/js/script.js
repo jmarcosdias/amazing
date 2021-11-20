@@ -61,7 +61,7 @@ const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
 const maxOperand = 10;
 
 // Number of rounds in the game
-const numberOfRounds = 10;
+const numberOfRounds = 1;
 
 // String with the current problem. This value changes randomly each round.
 let currentProblem;
@@ -346,4 +346,11 @@ function endGame() {
     document.getElementById('message-to-user').textContent = 'Game Over';
     document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('container-restart').style.display = 'block';
+
+    setInterval(function() {
+        let scoreContainer = document.getElementById('container-score');
+
+        scoreContainer.style.color = scoreContainer.style.color === 'blue' ? 'orange': 'blue';
+        scoreContainer.style.borderColor = scoreContainer.style.color;
+    }, 100);
 }
