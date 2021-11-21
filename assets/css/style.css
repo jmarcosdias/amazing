@@ -35,6 +35,19 @@ header, main, footer {
     animation-duration: 2s;
 }
 
+@keyframes yes-btn-animation {
+    0%    { background-color: blue;        }
+    10%   { background-color: red;         }
+    20%   { background-color: green;       }
+    30%   { background-color: tomato;      }
+    40%   { background-color: yellowgreen; }
+    50%   { background-color: blue;        }
+    60%   { background-color: red;         }
+    70%   { background-color: green;       }
+    80%   { background-color: tomato;      }
+    90%   { background-color: yellowgreen; }
+}
+
 #container-yes {
     background-image: url('../images/numbers-circle.png');
     background-repeat: no-repeat;
@@ -46,6 +59,11 @@ header, main, footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#btn-yes {
+    animation-name: yes-btn-animation;
+    animation-duration: 2s;
 }
 
 #container-message-to-user {   
@@ -92,24 +110,6 @@ header, main, footer {
 
 .btn:hover {
     color: blue;
-}
-
-@keyframes yes-btn-animation {
-    0%   { background-color: blue;        }
-    10%   { background-color: red;         }
-    20%   { background-color: green;       }
-    30%   { background-color: tomato;      }
-    40%   { background-color: yellowgreen; }
-    50%   { background-color: blue;        }
-    60%   { background-color: red;         }
-    70%   { background-color: green;       }
-    80%   { background-color: tomato;      }
-    90%   { background-color: yellowgreen; }
-}
-
-#btn-yes {
-    animation-name: yes-btn-animation;
-    animation-duration: 2s;
 }
 
 #container-score, #container-round {   
