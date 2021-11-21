@@ -52,7 +52,7 @@ const startScreenMessage = 'Are you <em>Amazingly Fast</em> at solving math prob
 const firstInstructionToUser = 'Memorize the result of the following problem';
 
 // Instruction presented to the user in the beginning of each round.
-const roundInstructionToUser = 'Is the following lower, same as or higher?';
+const roundInstructionToUser = 'Is the following lower, same as or higher than the previous?';
 
 // Array with the four operators (addition, subtraction, multiplication and division) used along the game.
 const operators = ['&plus;', '&minus;', '&times;', '&divide;'];
