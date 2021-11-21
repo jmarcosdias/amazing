@@ -40,7 +40,7 @@
 
   Developer         Date         Comments
   ----------------  -----------  -------------------------------------------------------------------------------------
-  Marcos Dias       21-NOV-2021  Initial creation
+  Marcos Dias       22-NOV-2021  Initial creation
 
  *********************************************************************************************************************/
 
@@ -455,4 +455,3 @@ function endGame() {
         scoreContainer.style.borderColor = scoreContainer.style.color;
     }, 100);
 }
-
