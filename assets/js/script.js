@@ -147,49 +147,9 @@ function btnYesClick() {
 }
 
 function btnLowerSameHigherClick(userAnswer) {
-    // The user just answered so it is time to stop timing
+    // The user just answered so it is time to stop timing and process that answer
     stopTiming();
-
-    // Total time in miliseconds the user took to answer
-    let timeToAnswer = finalTime - initialTime; 
-
-    let answerIsCorrect = isAnswerCorrect(userAnswer);
-
-    // True if the user answered correctly in 100 miliseconds or less
-    let amazinglyFast = answerIsCorrect && (timeToAnswer <= 100); 
-    
-    let infoToUser = `${amazinglyFast?'<em><strong><mark>Great!</mark></strong></em>': answerIsCorrect?'<em><strong><mark>Yes!</mark></strong></em>':'<em>Next time will be better</em>'}.<br><br>`;
-    let pointsNow = 0;
-
-    if (userAnswer === 'same') {
-        userAnswer = 'same as';
-    } else {
-        userAnswer = userAnswer + ' than';
-    }
-
-    if (answerIsCorrect) {
-        // The number of points earned in each round is inversely proportional to 
-        // the time taken to respond and it ranges from 10 to 1000 points
-        pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
-        score += pointsNow;
-        document.getElementById('score').textContent = score;
-
-        let textTime = timeToAnswer>10000?'more than 10 seconds':`${timeToAnswer} miliseconds`;
-
-        infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
-        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${textTime}${amazinglyFast?'!!!':'.'}<br><br>`;
-    } else {
-        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`;
-    }
-
-    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round. ${amazinglyFast?'<br><br>Well done &#128077 &#128077 &#128077':pointsNow>0?'<br><br>Nice &#128077':''}`;
-    document.getElementById('message-to-user').innerHTML = infoToUser;
-    document.getElementById('message-to-user').style.display = 'block';
-
-    document.getElementById('container-lower-same-higher').style.display = 'none';
-    document.getElementById('container-done').style.display = 'none';
-    document.getElementById('container-random-problem').style.display = 'none';
-    document.getElementById('container-ok').style.display = 'block';
+    processUserAnswer(userAnswer);
 }
 
 function btnOkOrDoneClick(okOrDone) {
@@ -231,6 +191,63 @@ function startGame() {
 
     document.getElementById('message-to-user').innerHTML = startScreenMessage;
     document.getElementById('container-message-to-user').style.display = 'block';
+}
+
+/**
+ * Set the current result
+ * 
+ * Receives the current operands and the operator an then calculates 
+ * the current result, saving it in a global variable
+ * 
+ * @param {number} operand1 - first operand
+ * @param {number} operator - operator (0=plus, 1=minus, 2=times, 3=divide)
+ * @param {number} operand2 - second operand
+ */
+ function setCurrentResult(operand1, operator, operand2) {
+    switch (operator) {
+        case 0:
+            currentResult = operand1 + operand2;
+            break;
+        case 1:
+            currentResult = operand1 - operand2;
+            break;
+        case 2:
+            currentResult = operand1 * operand2;
+            break;
+        default:
+            currentResult = operand1 / operand2;
+    }
+}
+
+/**
+ * Create a random problem
+ * 
+ * 1) Set local variables for the operands and operator
+ * 2) Make sure operand1 > operand2 for the subtraction and division
+ * 3) Set the current problem value which is a global variable
+ * 4) Set the current result value which is a global variable
+ * 5) Return a string with the random problem
+ */
+function createRandomProblem() {
+
+    // Set local variables for the operands and operator
+    let operand1 = Math.floor(Math.random() * maxOperand) + 1;
+    let operator = Math.floor(Math.random() * 4);
+    let operand2 = Math.floor(Math.random() * maxOperand) + 1;
+
+    // For the subtraction and division, make sure operand1 is greather than operand2
+    if (((operator === 1) || (operator === 3)) && (operand1 < operand2)) {
+        [operand1, operand2] = [operand2, operand1];
+    }
+
+    // Set the current problem value which is a global variable
+    currentProblem = `${operand1} ${operators[operator]} ${operand2}`;
+
+    // Set the current result value which is a global variable
+    setCurrentResult(operand1, operator, operand2);
+
+    // Return a string with the random problem
+    return currentProblem;
 }
 
 /**
@@ -307,61 +324,47 @@ function isAnswerCorrect(answer) {
     }
 }
 
-/**
- * Set the current result
- * 
- * Receives the current operands and the operator an then calculates 
- * the current result, saving it in a global variable
- * 
- * @param {number} operand1 - first operand
- * @param {number} operator - operator (0=plus, 1=minus, 2=times, 3=divide)
- * @param {number} operand2 - second operand
- */
-function setCurrentResult(operand1, operator, operand2) {
-    switch (operator) {
-        case 0:
-            currentResult = operand1 + operand2;
-            break;
-        case 1:
-            currentResult = operand1 - operand2;
-            break;
-        case 2:
-            currentResult = operand1 * operand2;
-            break;
-        default:
-            currentResult = operand1 / operand2;
-    }
-}
+function processUserAnswer(userAnswer) {
+    // Total time in miliseconds the user took to answer
+    let timeToAnswer = finalTime - initialTime; 
 
-/**
- * Create a random problem
- * 
- * 1) Set local variables for the operands and operator
- * 2) Make sure operand1 > operand2 for the subtraction and division
- * 3) Set the current problem value which is a global variable
- * 4) Set the current result value which is a global variable
- * 5) Return a string with the random problem
- */
-function createRandomProblem() {
+    let answerIsCorrect = isAnswerCorrect(userAnswer);
 
-    // Set local variables for the operands and operator
-    let operand1 = Math.floor(Math.random() * maxOperand) + 1;
-    let operator = Math.floor(Math.random() * 4);
-    let operand2 = Math.floor(Math.random() * maxOperand) + 1;
+    // True if the user answered correctly in 100 miliseconds or less
+    let amazinglyFast = answerIsCorrect && (timeToAnswer <= 100); 
+    
+    let infoToUser = `${amazinglyFast?'<em><strong><mark>Great!</mark></strong></em>': answerIsCorrect?'<em><strong><mark>Yes!</mark></strong></em>':'<em>Next time will be better</em>'}.<br><br>`;
+    let pointsNow = 0;
 
-    // For the subtraction and division, make sure operand1 is greather than operand2
-    if (((operator === 1) || (operator === 3)) && (operand1 < operand2)) {
-        [operand1, operand2] = [operand2, operand1];
+    if (userAnswer === 'same') {
+        userAnswer = 'same as';
+    } else {
+        userAnswer = userAnswer + ' than';
     }
 
-    // Set the current problem value which is a global variable
-    currentProblem = `${operand1} ${operators[operator]} ${operand2}`;
+    if (answerIsCorrect) {
+        // The number of points earned in each round is inversely proportional to 
+        // the time taken to respond and it ranges from 10 to 1000 points
+        pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
+        score += pointsNow;
+        document.getElementById('score').textContent = score;
 
-    // Set the current result value which is a global variable
-    setCurrentResult(operand1, operator, operand2);
+        let textTime = timeToAnswer>10000?'more than 10 seconds':`${timeToAnswer} miliseconds`;
 
-    // Return a string with the random problem
-    return currentProblem;
+        infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
+        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${textTime}${amazinglyFast?'!!!':'.'}<br><br>`;
+    } else {
+        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`;
+    }
+
+    infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round. ${amazinglyFast?'<br><br>Well done &#128077 &#128077 &#128077':pointsNow>0?'<br><br>Nice &#128077':''}`;
+    document.getElementById('message-to-user').innerHTML = infoToUser;
+    document.getElementById('message-to-user').style.display = 'block';
+
+    document.getElementById('container-lower-same-higher').style.display = 'none';
+    document.getElementById('container-done').style.display = 'none';
+    document.getElementById('container-random-problem').style.display = 'none';
+    document.getElementById('container-ok').style.display = 'block';
 }
 
 /**
