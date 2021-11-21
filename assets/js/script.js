@@ -44,6 +44,7 @@
 
  *********************************************************************************************************************/
 
+
 /*** Global Variables ************************************************************************************************/
 
 // This is the message that appears in the starting screen as a way to introduce the game
@@ -126,10 +127,18 @@ document.addEventListener('DOMContentLoaded', function () {
     startGame();
 });
 
+
+/*** Callback Functions **********************************************************************************************/
+
 function btnYesClick() {
+    // Hide unnecessary element
     document.getElementById('container-yes').style.display = 'none';
+
+    // Fill the message to the user and the random problem
     document.getElementById('message-to-user').textContent = firstInstructionToUser;
     document.getElementById('random-problem').innerHTML = createRandomProblem();
+
+    // Show required elements
     document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('container-random-problem').style.display = 'block';
     document.getElementById('container-done').style.display = 'block';
