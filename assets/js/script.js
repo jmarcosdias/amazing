@@ -45,6 +45,10 @@
  *********************************************************************************************************************/
 
 
+/*** Used by Jshint only *********************************************************************************************/
+// jshint esversion: 6
+
+
 /*** Global Variables ************************************************************************************************/
 
 // This is the message that appears in the starting screen as a way to introduce the game
@@ -97,18 +101,16 @@ document.addEventListener('DOMContentLoaded', function () {
         btnYesClick();
     });
 
-    let lowerSameHighButtons = [
-        document.getElementById('btn-lower'),
-        document.getElementById('btn-same'),
-        document.getElementById('btn-higher'),
-    ];
-
     // Add listeners for the btnLowerSameHigherClick callback function
-    for (let button of lowerSameHighButtons) {
-        button.addEventListener('click', function () {
-            btnLowerSameHigherClick(button);
-        })
-    }
+    document.getElementById('btn-lower').addEventListener('click', function () {
+        btnLowerSameHigherClick('lower');
+    });
+    document.getElementById('btn-same').addEventListener('click', function () {
+        btnLowerSameHigherClick('same');
+    });
+    document.getElementById('btn-higher').addEventListener('click', function () {
+        btnLowerSameHigherClick('higher');
+    });
 
     // Add listeners for the btnOkOrDoneClick callback function
     document.getElementById('btn-done').addEventListener('click', function () {
@@ -144,9 +146,8 @@ function btnYesClick() {
     document.getElementById('container-done').style.display = 'block';
 }
 
-function btnLowerSameHigherClick(button) {
+function btnLowerSameHigherClick(userAnswer) {
     stopTiming();
-    let userAnswer = button.id.substring(4);
     let answerIsCorrect = isAnswerCorrect(userAnswer);
 
     let timeToAnswer = finalTime - initialTime;
@@ -158,7 +159,7 @@ function btnLowerSameHigherClick(button) {
     if (userAnswer === 'same') {
         userAnswer = 'same as';
     } else {
-        userAnswer = userAnswer + ' than'
+        userAnswer = userAnswer + ' than';
     }
 
     if (answerIsCorrect) {
@@ -173,7 +174,7 @@ function btnLowerSameHigherClick(button) {
         infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
         infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${textTime}${amazinglyFast?'!!!':'.'}<br><br>`;
     } else {
-        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`
+        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`;
     }
 
     infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round. ${amazinglyFast?'<br><br>Well done &#128077 &#128077 &#128077':pointsNow>0?'<br><br>Nice &#128077':''}`;
@@ -349,7 +350,7 @@ function createRandomProblem() {
     }
 
     // Set the current problem value which is a global variable
-    currentProblem = `${operand1} ${operators[operator]} ${operand2}`
+    currentProblem = `${operand1} ${operators[operator]} ${operand2}`;
 
     // Set the current result value which is a global variable
     setCurrentResult(operand1, operator, operand2);
