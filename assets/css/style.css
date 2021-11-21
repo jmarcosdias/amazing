@@ -75,7 +75,7 @@ header, main, footer {
 
 .btn {
     background-color: orange;
-    border: solid 0.5rem orange;
+    border: none;
     font-weight: bolder;
     border-radius: 50%;
     color: white;
