@@ -131,21 +131,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /*** Callback Functions **********************************************************************************************/
 
-/**
- * Here the first instruction and the first random problem is presented to the user, before round 1.
- */
 function btnYesClick() {
     // Hide unnecessary element
     document.getElementById('container-yes').style.display = 'none';
-
-    // Fill the message to the user and the random problem elements
-    document.getElementById('message-to-user').textContent = firstInstructionToUser;
-    document.getElementById('random-problem').innerHTML = createRandomProblem();
-
-    // Show required elements
-    document.getElementById('container-message-to-user').style.display = 'block';
-    document.getElementById('container-random-problem').style.display = 'block';
-    document.getElementById('container-done').style.display = 'block';
+    presentFirstInstructionToUser();
 }
 
 /**
@@ -206,6 +195,22 @@ function startGame() {
     // Show required elements
     document.getElementById('container-message-to-user').style.display = 'block';    
     document.getElementById('container-yes').style.display = 'flex';
+}
+
+/**
+ * Present the first instruction to the user
+ * 
+ * The first random problem is also presented and nothing else happens until the user presses the done button.
+ */
+ function presentFirstInstructionToUser() {
+    // Fill the message to the user and the random problem elements
+    document.getElementById('message-to-user').textContent = firstInstructionToUser;
+    document.getElementById('random-problem').innerHTML = createRandomProblem();
+
+    // Show required elements
+    document.getElementById('container-message-to-user').style.display = 'block';
+    document.getElementById('container-random-problem').style.display = 'block';
+    document.getElementById('container-done').style.display = 'block';
 }
 
 /**
@@ -289,6 +294,8 @@ function createRandomProblem() {
  * 5) Create a random problem.
  * 6) Present the random problem to the user.
  * 7) Start timing.
+ * 
+ * Nothing else happens until the user presses either the lower, same, or high button.
  */
 function startRound() {
 
@@ -427,15 +434,20 @@ function processUserAnswer(userAnswer) {
 }
 
 /**
- * endGame()
+ * End the game
  * 
- * 
+ * Present the score blinking and the end game message. 
+ * Nothing else happens until the user press the play again button.
  */
 function endGame() {
+    // Fill the message to the user element
     document.getElementById('message-to-user').textContent = 'Game Over';
+
+    // Show the required elements
     document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('container-play-again').style.display = 'block';
 
+    // Show the score with color constantly changing between blue and orange (blinking)
     setInterval(function() {
         let scoreContainer = document.getElementById('container-score');
 
