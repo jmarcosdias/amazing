@@ -8,50 +8,110 @@
     box-sizing: border-box;
 }
 
-header, main, footer {
+header,
+main,
+footer {
     /* bad user experience if smaller */
     min-width: 300px;
 }
 
 @keyframes title-animation {
-    10%   { color: blue; }
-    20%   { color: red; }
-    30%   { color: green; }
-    40%   { color: tomato; }
-    50%   { color: yellowgreen; }
-    60%   { color: blue; }
-    70%   { color: red; }
-    80%   { color: green; }
-    90%   { color: tomato; }
-    100%  { color: yellowgreen; }
+    10% {
+        color: blue;
+    }
+
+    20% {
+        color: red;
+    }
+
+    30% {
+        color: green;
+    }
+
+    40% {
+        color: tomato;
+    }
+
+    50% {
+        color: yellowgreen;
+    }
+
+    60% {
+        color: blue;
+    }
+
+    70% {
+        color: red;
+    }
+
+    80% {
+        color: green;
+    }
+
+    90% {
+        color: tomato;
+    }
+
+    100% {
+        color: yellowgreen;
+    }
 }
 
 #container-title {
     letter-spacing: 0.5em;
     margin: 1.5rem 0.5rem;
     color: blue;
-    text-align:center;
+    text-align: center;
     animation-name: title-animation;
     animation-duration: 2s;
 }
 
 @keyframes yes-btn-animation {
-    0%    { background-color: blue;        }
-    10%   { background-color: red;         }
-    20%   { background-color: green;       }
-    30%   { background-color: tomato;      }
-    40%   { background-color: yellowgreen; }
-    50%   { background-color: blue;        }
-    60%   { background-color: red;         }
-    70%   { background-color: green;       }
-    80%   { background-color: tomato;      }
-    90%   { background-color: yellowgreen; }
+    0% {
+        background-color: blue;
+    }
+
+    10% {
+        background-color: red;
+    }
+
+    20% {
+        background-color: green;
+    }
+
+    30% {
+        background-color: tomato;
+    }
+
+    40% {
+        background-color: yellowgreen;
+    }
+
+    50% {
+        background-color: blue;
+    }
+
+    60% {
+        background-color: red;
+    }
+
+    70% {
+        background-color: green;
+    }
+
+    80% {
+        background-color: tomato;
+    }
+
+    90% {
+        background-color: yellowgreen;
+    }
 }
 
 #container-yes {
     background-image: url('../images/numbers-circle.png');
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
     background-size: cover;
     height: 50vw;
     width: 50vw;
@@ -66,8 +126,8 @@ header, main, footer {
     animation-duration: 2s;
 }
 
-#container-message-to-user {   
-    background-color:aquamarine;
+#container-message-to-user {
+    background-color: aquamarine;
     border: dotted 0.5em blue;
     border-radius: 2em;
     color: blue;
@@ -76,7 +136,7 @@ header, main, footer {
     text-align: center;
 }
 
-#container-random-problem {   
+#container-random-problem {
     background-color: hsl(60, 100%, 50%);
     border: solid 0.5em yellow;
     border-radius: 2em;
@@ -88,7 +148,7 @@ header, main, footer {
 }
 
 .btn-area {
-    text-align:center;
+    text-align: center;
 }
 
 .btn {
@@ -103,22 +163,25 @@ header, main, footer {
     font-size: large;
 }
 
-#btn-lower, #btn-same, #btn-higher {
-    padding: 0;
-    margin: 0 0.5rem;
-}
-
 .btn:hover {
     color: blue;
 }
 
-#container-score, #container-round {   
-    background-color:aquamarine;
+#btn-lower,
+#btn-same,
+#btn-higher {
+    padding: 0;
+    margin: 0 0.5rem;
+}
+
+#container-score,
+#container-round {
+    background-color: aquamarine;
     border: dotted 0.5em blue;
     border-radius: 2em;
     color: blue;
     padding: 1em;
-    text-align:center;
+    text-align: center;
     min-width: 35%;
     font-size: small;
 }
@@ -147,13 +210,15 @@ Rules for screen sizes from 400px wide and up
 ****************************************************************************************/
 
 @media screen and (min-width: 400px) {
-   
+
     .btn {
         min-width: 6rem;
         min-height: 6rem;
     }
- 
-    #btn-lower, #btn-same, #btn-higher {
+
+    #btn-lower,
+    #btn-same,
+    #btn-higher {
         margin: 0 1rem;
     }
 }
@@ -163,14 +228,16 @@ Rules for screen sizes from 600px wide and up
 ****************************************************************************************/
 
 @media screen and (min-width: 600px) {
-   
+
     .btn {
         min-width: 8rem;
         min-height: 8rem;
         font-size: xx-large;
     }
- 
-    #btn-lower, #btn-same, #btn-higher {
+
+    #btn-lower,
+    #btn-same,
+    #btn-higher {
         margin: 0 1.5rem;
     }
 }
@@ -191,13 +258,14 @@ Rules for screen sizes from 700px wide and up
         min-height: 9rem;
     }
 
-    #container-message-to-user, #container-random-problem {  
+    #container-message-to-user,
+    #container-random-problem {
         font-size: x-large;
     }
-   
-    #container-score, #container-round {
+
+    #container-score,
+    #container-round {
         font-size: large;
     }
 
 }
-
