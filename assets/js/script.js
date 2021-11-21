@@ -6,32 +6,33 @@
 
   There are 10 rounds. 
   
-  A first random math problem is presented to the user, before the first round. The user is asked to memorize it.
+  Before the first round, a random math problem is presented to the user and the user is asked to memorize it.
   
-  Each round another random math problem is presented to the user and the user is asked to answer if the result of 
-  the current problem is lower than, same as or higher than the result of the previous problem.
-
-  Each correct answer scores from 1 to 100 points, depending on how faster it was.
-  
-  10 point means it was answered in about 10 seconds or more.
-
-  1000 points means it was answered in 100 miliseconds or less.
-
-  Here is the formula to calculate the number of points each round, with timeToAnswer given in miliseconds:
-  Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10)
+  Each round another random math problem is presented and the user is asked to answer if the result of this problem 
+  is lower, same as or higher than the result of the previous problem.
 
   Each incorrect answer scores 0 points.
+
+  Each correct answer scores from 10 to 1000 points, depending on how faster it is given.
+  
+  10 point means the user tooks about 10 seconds or more to answer.
+
+  1000 points means the answer was given in 100 miliseconds or less.
+
+  Here is the formula to calculate the number of points each round, for a correct answer, with timeToAnswer given 
+  in miliseconds: Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10).
+
 
   Developer Credit Notes
   ----------------------
   
   I have asked my friends in a WhatsApp group and one of them, named Chris Fawcett, came up with a suggestion.
   I took and adapted that suggestion to create the game. Thanks to Chris Fawcett for coming up with that first
-  idea which I could turn into what the Amazingly Fast game is now.
+  idea which I could turn into the Amazingly Fast math game.
 
   Some callback functions in this code are based on what I have learned with the Code Institute's Love Maths game.
-  Thanks to the Code Institute and to my mentor Chris Quinn for the excellent training and valuable advices given
-  along the mentor sessions.
+  Thanks to the Code Institute and to my mentor Chris Quinn for the excellent training and the valuable advices 
+  given along the mentor sessions.
 
 
   History
@@ -39,7 +40,7 @@
 
   Developer         Date         Comments
   ----------------  -----------  -------------------------------------------------------------------------------------
-  Marcos Dias       22-NOV-2021  Initial creation
+  Marcos Dias       21-NOV-2021  Initial creation
 
  *********************************************************************************************************************/
 
