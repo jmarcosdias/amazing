@@ -138,7 +138,7 @@ function btnYesClick() {
     // Hide unnecessary element
     document.getElementById('container-yes').style.display = 'none';
 
-    // Fill the message to the user and the random problem
+    // Fill the message to the user and the random problem elements
     document.getElementById('message-to-user').textContent = firstInstructionToUser;
     document.getElementById('random-problem').innerHTML = createRandomProblem();
 
@@ -200,7 +200,7 @@ function startGame() {
     document.getElementById('container-round').style.display = 'none';
     document.getElementById('container-score').style.display = 'none';
 
-    // Fill the message to the user
+    // Fill the message to the user element
     document.getElementById('message-to-user').innerHTML = startScreenMessage;
 
     // Show required elements
@@ -282,13 +282,13 @@ function createRandomProblem() {
 /**
  * Start a round
  * 
- * 1) Increments the round number.
- * 2) Ends the game if the round number is greather than the number of rounds.
- * 3) Continue below with steps 4 to 7 if the game is not ended.
+ * 1) Increment the round number.
+ * 2) End the game if the round number is greather than the number of rounds.
+ * 3) Continue with steps 4 to 7 if the game is not ended.
  * 4) Set previous problem and previous result.
  * 5) Create a random problem.
  * 6) Present the random problem to the user.
- * 7) Start timing,
+ * 7) Start timing.
  */
 function startRound() {
 
@@ -309,12 +309,12 @@ function startRound() {
     document.getElementById('container-lower-same-higher').style.display = 'none';
     document.getElementById('container-ok').style.display = 'none';
 
-    // Fill the message to the user and a '?' in the random problem
+    // Fill the message to the user and the random problem elements. 
     document.getElementById('message-to-user').textContent = roundInstructionToUser;
-    document.getElementById('random-problem').textContent = '?';
+    document.getElementById('random-problem').textContent = '?'; // filled with ? for about 3 seconds
 
     // Fill the round and the score
-    document.getElementById('round').innerHTML = `${currentRoundNumber} of ${numberOfRounds}`;
+    document.getElementById('round').textContent = `${currentRoundNumber} of ${numberOfRounds}`;
     document.getElementById('score').textContent = score;
 
     // Disable buttons that are not allowed at this moment (while random problem = '?')
@@ -356,46 +356,73 @@ function isAnswerCorrect(answer) {
     }
 }
 
+/**
+ * Process user answer
+ * 
+ * 1) Check if the answer is correct. 
+ * 2) Update the score in case the answer is correct.
+ * 3) Build and show the message to the user, accordingly to thei user answer.
+ */
 function processUserAnswer(userAnswer) {
-    // Total time in miliseconds the user took to answer
-    let timeToAnswer = finalTime - initialTime; 
 
-    let answerIsCorrect = isAnswerCorrect(userAnswer);
+    // Hide unnecessary elements
+    document.getElementById('container-random-problem').style.display = 'none';
+    document.getElementById('container-done').style.display = 'none';
+    document.getElementById('container-lower-same-higher').style.display = 'none';
 
-    // True if the user answered correctly in 100 miliseconds or less
-    let amazinglyFast = answerIsCorrect && (timeToAnswer <= 100); 
-    
-    let infoToUser = `${amazinglyFast?'<em><strong><mark>Great!</mark></strong></em>': answerIsCorrect?'<em><strong><mark>Yes!</mark></strong></em>':'<em>Next time will be better</em>'}.<br><br>`;
+    // Initialization
+    let timeToAnswer = Infinity;
+    let amazinglyFast = false;
     let pointsNow = 0;
-
+    let textTimeToAnswer = '';
+    let modifiedUserAnswer = '';
     if (userAnswer === 'same') {
-        userAnswer = 'same as';
+        modifiedUserAnswer = 'same as';
     } else {
-        userAnswer = userAnswer + ' than';
+        modifiedUserAnswer = userAnswer + ' than';
     }
 
+    // Check if the answer is correct
+    let answerIsCorrect = isAnswerCorrect(userAnswer);
+
     if (answerIsCorrect) {
-        // The number of points earned in each round is inversely proportional to 
-        // the time taken to respond and it ranges from 10 to 1000 points
+        // Total time in miliseconds the user took to answer
+        timeToAnswer = finalTime - initialTime;
+
+        // String about the time to answer. This is used in the message to the user.
+        textTimeToAnswer = timeToAnswer>10000?'more than 10 seconds':`${timeToAnswer} miliseconds`;
+
+        // Consider amazingly fast if the time to answer was 100 miliseconds or less
+        amazinglyFast = timeToAnswer <= 100;
+ 
+        // The number of points earned in each round is inversely proportional to the time taken to respond 
+        // and it ranges from 10 to 1000.
         pointsNow = Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10);
+
+        // Update the score
         score += pointsNow;
         document.getElementById('score').textContent = score;
 
-        let textTime = timeToAnswer>10000?'more than 10 seconds':`${timeToAnswer} miliseconds`;
-
-        infoToUser += ` ${currentProblem} is ${userAnswer} ${previousProblem}.<br><br>`;
-        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${textTime}${amazinglyFast?'!!!':'.'}<br><br>`;
     } else {
-        infoToUser += ` ${currentProblem} is not ${userAnswer} ${previousProblem}.<br><br>`;
+        // Add a 'not' to the modified user answer. This is used in the message to the user.
+        modifiedUserAnswer = `not ${modifiedUserAnswer}`;
     }
 
+    // Build the message to the user
+    let infoToUser = `${amazinglyFast?  '<em><strong><mark>Great!</mark></strong></em>': // Amazingly Fast 
+                        answerIsCorrect?'<em><strong><mark>Yes!</mark></strong></em>'  : // Correct answer but not so fast 
+                                        '<em>Next time will be better.</em>'}<br><br>` ; // Incorrect answer
+    infoToUser += ` ${currentProblem} is ${modifiedUserAnswer} ${previousProblem}.<br><br>`;
+    if (answerIsCorrect) {
+        infoToUser += `You answered ${amazinglyFast?'<em><strong><mark>Amazingly Fast</mark></strong></em>':''} in ${textTimeToAnswer}${amazinglyFast?'!!!':'.'}<br><br>`;
+    }   
     infoToUser += ` You scored ${pointsNow} point${pointsNow === 1 ? '':'s'} in this round. ${amazinglyFast?'<br><br>Well done &#128077 &#128077 &#128077':pointsNow>0?'<br><br>Nice &#128077':''}`;
-    document.getElementById('message-to-user').innerHTML = infoToUser;
-    document.getElementById('message-to-user').style.display = 'block';
 
-    document.getElementById('container-lower-same-higher').style.display = 'none';
-    document.getElementById('container-done').style.display = 'none';
-    document.getElementById('container-random-problem').style.display = 'none';
+    // Fill the message to the user element
+    document.getElementById('message-to-user').innerHTML = infoToUser;
+
+    // Show the message to the user and the ok button
+    document.getElementById('message-to-user').style.display = 'block';
     document.getElementById('container-ok').style.display = 'block';
 }
 
