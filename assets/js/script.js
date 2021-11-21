@@ -91,34 +91,38 @@ let score = 0;
 // Wait for the initial HTML document to load, add the event listeners and start the game
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Add listener for the btnYesClick callback function
     document.getElementById('btn-yes').addEventListener('click', function () {
-        btnYesClick('container-ok');
+        btnYesClick();
     });
 
-    let buttons = [
+    let lowerSameHighButtons = [
         document.getElementById('btn-lower'),
         document.getElementById('btn-same'),
         document.getElementById('btn-higher'),
     ];
 
-    for (let button of buttons) {
+    // Add listeners for the btnLowerSameHigherClick callback function
+    for (let button of lowerSameHighButtons) {
         button.addEventListener('click', function () {
             btnLowerSameHigherClick(button);
         })
     }
 
+    // Add listeners for the btnOkOrDoneClick callback function
     document.getElementById('btn-done').addEventListener('click', function () {
         btnOkOrDoneClick('container-done');
     });
-
     document.getElementById('btn-ok').addEventListener('click', function () {
         btnOkOrDoneClick('container-ok');
     });
 
+    // Add listener for the playAgainClick callback function
     document.getElementById('btn-play-again').addEventListener('click', function () {
-        location.reload();
+        playAgainClick();
     });
 
+    // Start the Game
     startGame();
 });
 
@@ -176,6 +180,13 @@ function btnLowerSameHigherClick(button) {
 function btnOkOrDoneClick(okOrDone) {
     document.getElementById(okOrDone).style.display = 'none';
     startRound();
+}
+
+/**
+ * playAgainClick()
+ */
+ function playAgainClick() {
+    location.reload();
 }
 
 /**
@@ -355,3 +366,4 @@ function endGame() {
         scoreContainer.style.borderColor = scoreContainer.style.color;
     }, 100);
 }
+
