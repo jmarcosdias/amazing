@@ -176,12 +176,11 @@ function btnOkOrDoneClick(okOrDone) {
 /**
  * Start a new game
  *
- * * The first instruction is presented to the user
- * * A random problem is presented to the user
- * * Nothing else happens until the user presses the btn-done
- * * When the user presses btn-done, its call back method will start the first round
+ * The start screen message is presented to the user and nothing else happens until the user presses the yes button.
  */
 function startGame() {
+
+    // Initialization
     currentRoundNumber = 0;
     currentProblem = undefined;
     currentResult = undefined;
@@ -189,17 +188,24 @@ function startGame() {
     previousResult = undefined;
     score = 0;
 
-    document.getElementById('container-lower-same-higher').style.display = 'none';
+    // Hide elements
+    document.getElementById('container-message-to-user').style.display = 'none';
+    document.getElementById('container-yes').style.display = 'none';
+    document.getElementById('container-message-to-user').style.display = 'none';
+    document.getElementById('container-random-problem').style.display = 'none';
     document.getElementById('container-done').style.display = 'none';
+    document.getElementById('container-lower-same-higher').style.display = 'none';
     document.getElementById('container-ok').style.display = 'none';
     document.getElementById('container-play-again').style.display = 'none';
-    document.getElementById('container-random-problem').style.display = 'none';
-    document.getElementById('container-message-to-user').style.display = 'none';
-    document.getElementById('container-score').style.display = 'none';
     document.getElementById('container-round').style.display = 'none';
+    document.getElementById('container-score').style.display = 'none';
 
+    // Fill the message to the user
     document.getElementById('message-to-user').innerHTML = startScreenMessage;
-    document.getElementById('container-message-to-user').style.display = 'block';
+
+    // Show required elements
+    document.getElementById('container-message-to-user').style.display = 'block';    
+    document.getElementById('container-yes').style.display = 'flex';
 }
 
 /**
@@ -233,8 +239,8 @@ function startGame() {
  * 
  * 1) Set local variables for the operands and operator
  * 2) Make sure operand1 > operand2 for the subtraction and division
- * 3) Set the current problem value which is a global variable
- * 4) Set the current result value which is a global variable
+ * 3) Set the current problem value
+ * 4) Set the current result value
  * 5) Return a string with the random problem
  */
 function createRandomProblem() {
@@ -260,67 +266,84 @@ function createRandomProblem() {
 }
 
 /**
+ * Start counting the time an answer takes to be answered
+ */
+ function startTiming() {
+    initialTime = new Date().getTime();
+}
+
+/**
+ * Stop counting the time an answer takes to be answered
+ */
+ function stopTiming() {
+    finalTime = new Date().getTime();
+}
+
+/**
  * Start a round
  * 
+ * 1) Increments the round number.
+ * 2) Ends the game if the round number is greather than the number of rounds.
+ * 3) Continue below with steps 4 to 7 if the game is not ended.
+ * 4) Set previous problem and previous result.
+ * 5) Create a random problem.
+ * 6) Present the random problem to the user.
+ * 7) Start timing,
  */
 function startRound() {
 
+    // Increments the round number
     currentRoundNumber++;
     if (currentRoundNumber > numberOfRounds) {
         endGame();
         return;
     }
 
+    // Set previous problem and previous result
     previousResult = currentResult;
     previousProblem = currentProblem;
-    document.getElementById('container-lower-same-higher').style.display = 'none';
-    document.getElementById('container-done').style.display = 'none';
-    document.getElementById('container-ok').style.display = 'none';
-    document.getElementById('container-message-to-user').style.display = 'none';
 
+    // Hide elements
+    document.getElementById('container-message-to-user').style.display = 'none';
+    document.getElementById('container-done').style.display = 'none';
+    document.getElementById('container-lower-same-higher').style.display = 'none';
+    document.getElementById('container-ok').style.display = 'none';
+
+    // Fill the message to the user and a '?' in the random problem
     document.getElementById('message-to-user').textContent = roundInstructionToUser;
     document.getElementById('random-problem').textContent = '?';
 
+    // Fill the round and the score
+    document.getElementById('round').innerHTML = `${currentRoundNumber} of ${numberOfRounds}`;
+    document.getElementById('score').textContent = score;
+
+    // Disable buttons that are not allowed at this moment (while random problem = '?')
     document.getElementById('btn-lower').disabled = true;
     document.getElementById('btn-same').disabled = true;
     document.getElementById('btn-higher').disabled = true;
 
-    document.getElementById('score').textContent = score;
-    document.getElementById('round').innerHTML = `${currentRoundNumber} of ${numberOfRounds}`;
+    // Show the elements intended to show at this time
     document.getElementById('container-message-to-user').style.display = 'block';
-    document.getElementById('container-random-problem').style.display = 'block';   
-    document.getElementById('container-lower-same-higher').style.display = 'block'; 
-    document.getElementById('container-score').style.display = 'block';
+    document.getElementById('container-random-problem').style.display = 'block';
+    document.getElementById('container-lower-same-higher').style.display = 'block';
     document.getElementById('container-round').style.display = 'block';
+    document.getElementById('container-score').style.display = 'block';
 
+    // Create 3 seconds of suspense before: 1), 2) and 3) below.
     setTimeout(function () {
+        // 1) Show problem
         document.getElementById('random-problem').innerHTML = createRandomProblem();
+        // 2) Enable buttons that are now required so that the user can answer
         document.getElementById('btn-lower').disabled = false;
         document.getElementById('btn-same').disabled = false;
         document.getElementById('btn-higher').disabled = false;
+        // 3) Start timing
         startTiming();
     }, 3000);
 }
 
 /**
- * Start counting the time an answer takes to be answered
- * 
- */
-function startTiming() {
-    initialTime = new Date().getTime();
-}
-
-/**
- * Stop counting the time an answer takes to be answered
- * 
- */
-function stopTiming() {
-    finalTime = new Date().getTime();
-}
-
-/**
  * Check if the answer is correct
- * 
  */
 function isAnswerCorrect(answer) {
     switch (answer) {
