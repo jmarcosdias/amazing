@@ -147,11 +147,16 @@ function btnYesClick() {
 }
 
 function btnLowerSameHigherClick(userAnswer) {
+    // The user just answered so it is time to stop timing
     stopTiming();
+
+    // Total time in miliseconds the user took to answer
+    let timeToAnswer = finalTime - initialTime; 
+
     let answerIsCorrect = isAnswerCorrect(userAnswer);
 
-    let timeToAnswer = finalTime - initialTime;
-    let amazinglyFast = (timeToAnswer < 2000) && answerIsCorrect;
+    // True if the user answered correctly in 100 miliseconds or less
+    let amazinglyFast = answerIsCorrect && (timeToAnswer <= 100); 
     
     let infoToUser = `${amazinglyFast?'<em><strong><mark>Great!</mark></strong></em>': answerIsCorrect?'<em><strong><mark>Yes!</mark></strong></em>':'<em>Next time will be better</em>'}.<br><br>`;
     let pointsNow = 0;
