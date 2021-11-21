@@ -129,9 +129,11 @@ document.addEventListener('DOMContentLoaded', function () {
     startGame();
 });
 
-
 /*** Callback Functions **********************************************************************************************/
 
+/**
+ * Here the first instruction and the first random problem is presented to the user, before round 1.
+ */
 function btnYesClick() {
     // Hide unnecessary element
     document.getElementById('container-yes').style.display = 'none';
@@ -146,23 +148,30 @@ function btnYesClick() {
     document.getElementById('container-done').style.display = 'block';
 }
 
+/**
+ * The user just answered so it is time to stop timing and process that answer.
+ */
 function btnLowerSameHigherClick(userAnswer) {
-    // The user just answered so it is time to stop timing and process that answer
     stopTiming();
     processUserAnswer(userAnswer);
 }
 
+/**
+ * Let's hide that OK or Done button and start a round.
+ */
 function btnOkOrDoneClick(okOrDone) {
     document.getElementById(okOrDone).style.display = 'none';
     startRound();
 }
 
 /**
- * playAgainClick()
+ * Let's refresh this page to start a new game
  */
  function playAgainClick() {
     location.reload();
 }
+
+/*** Other Functions *************************************************************************************************/
 
 /**
  * Start a new game
