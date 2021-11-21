@@ -107,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.getElementById('btn-done').addEventListener('click', function () {
-        btnOkOrDoneClick('done');
+        btnOkOrDoneClick('container-done');
     });
 
     document.getElementById('btn-ok').addEventListener('click', function () {
         btnOkOrDoneClick('container-ok');
     });
 
-    document.getElementById('btn-restart').addEventListener('click', function () {
+    document.getElementById('btn-play-again').addEventListener('click', function () {
         location.reload();
     });
 
@@ -127,7 +127,7 @@ function btnYesClick() {
     document.getElementById('random-problem').innerHTML = createRandomProblem();
     document.getElementById('container-message-to-user').style.display = 'block';
     document.getElementById('container-random-problem').style.display = 'block';
-    document.getElementById('done').style.display = 'block';
+    document.getElementById('container-done').style.display = 'block';
 }
 
 function btnLowerSameHigherClick(button) {
@@ -167,7 +167,7 @@ function btnLowerSameHigherClick(button) {
     document.getElementById('message-to-user').style.display = 'block';
 
     document.getElementById('container-lower-same-higher').style.display = 'none';
-    document.getElementById('done').style.display = 'none';
+    document.getElementById('container-done').style.display = 'none';
     document.getElementById('container-random-problem').style.display = 'none';
     document.getElementById('container-ok').style.display = 'block';
 }
@@ -194,9 +194,9 @@ function startGame() {
     score = 0;
 
     document.getElementById('container-lower-same-higher').style.display = 'none';
-    document.getElementById('done').style.display = 'none';
+    document.getElementById('container-done').style.display = 'none';
     document.getElementById('container-ok').style.display = 'none';
-    document.getElementById('container-restart').style.display = 'none';
+    document.getElementById('container-play-again').style.display = 'none';
     document.getElementById('container-random-problem').style.display = 'none';
     document.getElementById('container-message-to-user').style.display = 'none';
     document.getElementById('container-score').style.display = 'none';
@@ -221,7 +221,7 @@ function startRound() {
     previousResult = currentResult;
     previousProblem = currentProblem;
     document.getElementById('container-lower-same-higher').style.display = 'none';
-    document.getElementById('done').style.display = 'none';
+    document.getElementById('container-done').style.display = 'none';
     document.getElementById('container-ok').style.display = 'none';
     document.getElementById('container-message-to-user').style.display = 'none';
 
@@ -345,7 +345,7 @@ function createRandomProblem() {
 function endGame() {
     document.getElementById('message-to-user').textContent = 'Game Over';
     document.getElementById('container-message-to-user').style.display = 'block';
-    document.getElementById('container-restart').style.display = 'block';
+    document.getElementById('container-play-again').style.display = 'block';
 
     setInterval(function() {
         let scoreContainer = document.getElementById('container-score');
