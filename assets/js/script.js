@@ -15,13 +15,15 @@
 
   Each correct answer scores from 10 to 1000 points, depending on how faster it is given.
   
-  10 point means the user tooks about 10 seconds or more to answer.
+  10 point means the user tooks about 10 seconds or more to answer correctly.
 
-  1000 points means the answer was given in 100 miliseconds or less.
+  1000 points means the correct answer was given in 100 miliseconds or less.
 
   Here is the formula to calculate the number of points each round, for a correct answer, with timeToAnswer given 
   in miliseconds: Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10).
 
+  This way the points for each correct answer start in 10 and can go up to 1000 and they are inversely proportional 
+  to the time taken to answer.
 
   Developer Credit Notes
   ----------------------
@@ -32,8 +34,7 @@
 
   Some callback functions in this code are based on what I have learned with the Code Institute's Love Maths game.
   Thanks to the Code Institute and to my mentor Chris Quinn for the excellent training and the valuable advices 
-  given along the mentor sessions.
-
+  I have received along the mentor sessions.
 
   History
   -------
@@ -43,7 +44,6 @@
   Marcos Dias       22-NOV-2021  Initial creation
 
  *********************************************************************************************************************/
-
 
 /*** Used by Jshint only *********************************************************************************************/
 // jshint esversion: 6
@@ -129,8 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
     startGame();
 });
 
-/*** Callback Functions **********************************************************************************************/
-
 function btnYesClick() {
     // Hide unnecessary element
     document.getElementById('container-yes').style.display = 'none';
@@ -160,8 +158,6 @@ function btnOkOrDoneClick(okOrDone) {
     location.reload();
 }
 
-/*** Other Functions *************************************************************************************************/
-
 /**
  * Start a new game
  *
@@ -171,10 +167,6 @@ function startGame() {
 
     // Initialization
     currentRoundNumber = 0;
-    currentProblem = undefined;
-    currentResult = undefined;
-    previousProblem = undefined;
-    previousResult = undefined;
     score = 0;
 
     // Hide elements
@@ -324,7 +316,7 @@ function startRound() {
     document.getElementById('round').textContent = `${currentRoundNumber} of ${numberOfRounds}`;
     document.getElementById('score').textContent = score;
 
-    // Disable buttons that are not allowed at this moment (while random problem = '?')
+    // Disable buttons that are not allowed at this moment (while random problem is '?')
     document.getElementById('btn-lower').disabled = true;
     document.getElementById('btn-same').disabled = true;
     document.getElementById('btn-higher').disabled = true;
