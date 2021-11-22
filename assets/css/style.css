@@ -174,8 +174,8 @@ footer {
     margin: 0 0.5rem;
 }
 
-#container-score,
-#container-round {
+#container-round,
+#container-score {
     background-color: aquamarine;
     border: dotted 0.5em blue;
     border-radius: 2em;
@@ -206,7 +206,7 @@ footer {
 }
 
 /****************************************************************************************
-Rules for screen sizes from 400px wide and up                                               
+Rules for screen sizes from 400px wide and up
 ****************************************************************************************/
 
 @media screen and (min-width: 400px) {
@@ -224,7 +224,7 @@ Rules for screen sizes from 400px wide and up
 }
 
 /****************************************************************************************
-Rules for screen sizes from 600px wide and up                                               
+Rules for screen sizes from 600px wide and up
 ****************************************************************************************/
 
 @media screen and (min-width: 600px) {
@@ -243,7 +243,7 @@ Rules for screen sizes from 600px wide and up
 }
 
 /****************************************************************************************
-Rules for screen sizes from 700px wide and up                                               
+Rules for screen sizes from 700px wide and up
 ****************************************************************************************/
 
 @media screen and (min-width: 700px) {
@@ -263,9 +263,49 @@ Rules for screen sizes from 700px wide and up
         font-size: x-large;
     }
 
-    #container-score,
-    #container-round {
+    #container-round,
+    #container-score {
         font-size: large;
     }
 
+}
+
+/****************************************************************************************
+Rules for screen sizes from 1400px width and up and 900px height and up
+****************************************************************************************/
+@media screen and (min-width: 1400px) and (min-height: 900px) {
+
+    #container-title {
+        letter-spacing: 1em;
+        margin: 2.5rem 0.5rem;
+    }
+
+    .btn {
+        min-width: 11rem;
+        min-height: 11rem;
+        letter-spacing: 0.2em;
+    }
+
+    #container-message-to-user,
+    #container-random-problem {
+        font-size: xx-large;
+        letter-spacing: 0.2em;
+        margin: 2.5rem 0.5rem;
+    }
+
+    #container-round,
+    #container-score {
+        font-size: x-large;
+        letter-spacing: 0.2em;
+        position: absolute;
+        bottom: 0;
+    }
+
+    #container-round {
+        left: 0;
+    }
+
+    #container-score {
+        right: 0;
+    }
 }
