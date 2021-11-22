@@ -92,6 +92,20 @@ In a future release it is possible and expected that the following features will
 </li>
 </ul>
 
+## Testing 
+
+The test approach consisted of validating on different browsers and devices, navigating, scrolling when possible, clicking in every link, changing the size of the viewport and trying to reproduce every scenario a user might come across. This to ensure that the website is working and looking good in all situations.
+
+For a summarized view of the game in different devices and in order not to tire readers of this document, please check below the tests that were also performed by playing the game in each screen inside the <em>Am I Responsive</em> web site.
+
+<span> <img src="assets/images/tst-starting-screen-mockup.png"       alt="test evidence starting screen"         width="200"/> </span>
+<span> <img src="assets/images/tst-first-instruction-mockup"         alt="test evidence first instruction"       width="200"/> </span>
+<span> <img src="assets/images/tst-round-1-mockup.png"               alt="test evidence round 1"                 width="200"/> </span>
+<span> <img src="assets/images/tst-correct-answer-mockup.png"        alt="test evidence correct answer"          width="200"/> </span>
+<span> <img src="assets/images/tst-amazingly-fast-answer-mockup.png" alt="test evidence amazingly fast answer"   width="200"/> </span>
+<span> <img src="assets/images/tst-wrong-answer-mockup.png"          alt="test evidence wrong answer"            width="200"/> </span>
+<span> <img src="assets/images/tst-play-again-mockup.png"            alt="test evidence game over play again"    width="200"/> </span>
+
 
  
 
