@@ -206,10 +206,10 @@ footer {
 }
 
 /****************************************************************************************
-Rules for screen sizes from 400px wide and up
+Rules for screen sizes from 400px width and 600px height and up
 ****************************************************************************************/
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 400px) and (min-height: 600px) {
 
     .btn {
         min-width: 6rem;
@@ -224,10 +224,10 @@ Rules for screen sizes from 400px wide and up
 }
 
 /****************************************************************************************
-Rules for screen sizes from 600px wide and up
+Rules for screen sizes from 600px width and 600px height and up
 ****************************************************************************************/
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 600px) and (min-height: 600px) {
 
     .btn {
         min-width: 8rem;
@@ -243,10 +243,10 @@ Rules for screen sizes from 600px wide and up
 }
 
 /****************************************************************************************
-Rules for screen sizes from 700px wide and up
+Rules for screen sizes from 700px width and 700px height and up
 ****************************************************************************************/
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 700px) and (min-height: 700px) {
 
     #container-yes {
         height: 350px;
@@ -271,7 +271,7 @@ Rules for screen sizes from 700px wide and up
 }
 
 /****************************************************************************************
-Rules for screen sizes from 1200px width and up and 800px height and up
+Rules for screen sizes from 1200px width and 800px height and up
 ****************************************************************************************/
 @media screen and (min-width: 1200px) and (min-height: 800px) {
 
@@ -291,7 +291,7 @@ Rules for screen sizes from 1200px width and up and 800px height and up
 }
 
 /****************************************************************************************
-Rules for screen sizes from 700px width and up and 800px height and up
+Rules for screen sizes from 700px width and 800px height and up
 ****************************************************************************************/
 @media screen and (min-width: 700px) and (min-height: 800px) {
 
@@ -301,13 +301,13 @@ Rules for screen sizes from 700px width and up and 800px height and up
     .btn,
     #container-round,
     #container-score {
-        margin-top: 5vw;
-        margin-bottom: 5vw;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 }
 
 /****************************************************************************************
-Rules for screen sizes from 1400px width and up and 900px height and up
+Rules for screen sizes from 1400px width and 900px height and up
 ****************************************************************************************/
 @media screen and (min-width: 1400px) and (min-height: 900px) {
 
