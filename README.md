@@ -98,13 +98,13 @@ The test approach consisted of validating on different browsers and devices, nav
 
 For a summarized view of the game in different devices and in order not to tire readers of this document, please check below the tests that were also performed by playing the game in each screen inside the <em>Am I Responsive</em> web site.
 
-<span> <img src="assets/images/tst-starting-screen-mockup.png"       alt="test evidence starting screen"         width="200"/> </span>
-<span> <img src="assets/images/tst-first-instruction-mockup"         alt="test evidence first instruction"       width="200"/> </span>
-<span> <img src="assets/images/tst-round-1-mockup.png"               alt="test evidence round 1"                 width="200"/> </span>
-<span> <img src="assets/images/tst-correct-answer-mockup.png"        alt="test evidence correct answer"          width="200"/> </span>
-<span> <img src="assets/images/tst-amazingly-fast-answer-mockup.png" alt="test evidence amazingly fast answer"   width="200"/> </span>
-<span> <img src="assets/images/tst-wrong-answer-mockup.png"          alt="test evidence wrong answer"            width="200"/> </span>
-<span> <img src="assets/images/tst-play-again-mockup.png"            alt="test evidence game over play again"    width="200"/> </span>
+<span> <img src="assets/images/tst-starting-screen-mockup.png"       alt="test evidence starting screen"         width="400"/> </span>
+<span> <img src="assets/images/tst-first-instruction-mockup,png"     alt="test evidence first instruction"       width="400"/> </span>
+<span> <img src="assets/images/tst-round-1-mockup.png"               alt="test evidence round 1"                 width="400"/> </span>
+<span> <img src="assets/images/tst-correct-answer-mockup.png"        alt="test evidence correct answer"          width="400"/> </span>
+<span> <img src="assets/images/tst-amazingly-fast-answer-mockup.png" alt="test evidence amazingly fast answer"   width="400"/> </span>
+<span> <img src="assets/images/tst-wrong-answer-mockup.png"          alt="test evidence wrong answer"            width="400"/> </span>
+<span> <img src="assets/images/tst-play-again-mockup.png"            alt="test evidence game over play again"    width="400"/> </span>
 
 
  
