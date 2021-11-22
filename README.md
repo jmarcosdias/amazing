@@ -20,7 +20,22 @@ In each round, the users will need to solve an arithmetic problem, as quickly as
 
 ### Existing Features
 
-In construction
+- The starting screen
+
+This is the first screen presented with a CSS animation making the title and the Yes button change color several times for 2 seconds. 
+
+The user can continue by clicking the Yes button.
+
+![Starting Screen](assets/images/doc-starting-screen.png)
+
+- First instruction to the user
+
+A first instruction is presented, asking the user to memorize a random problem. 
+
+The user can continue by clicking the Done button.
+
+![Starting Screen](assets/images/doc-first-instruction.png)
+
 
 ### Future Features
 
