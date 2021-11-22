@@ -94,17 +94,39 @@ In a future release it is possible and expected that the following features will
 
 ## Testing 
 
+### Different Devices
+
 The test approach consisted of validating on different browsers and devices, navigating, scrolling when possible, clicking in every link, changing the size of the viewport and trying to reproduce every scenario a user might come across. This to ensure that the website is working and looking good in all situations.
 
+### <em>Am I Responsive</em> website
 For a summarized view of the game in different devices and in order not to tire readers of this document, please check below the tests that were also performed by playing the game in each screen inside the <em>Am I Responsive</em> web site.
 
 <span> <img src="assets/images/tst-starting-screen-mockup.png"       alt="test evidence starting screen"         width="400"/> </span>
-<span> <img src="assets/images/tst-first-instruction-mockup,png"     alt="test evidence first instruction"       width="400"/> </span>
+<span> <img src="assets/images/tst-first-instruction-mockup.png"     alt="test evidence first instruction"       width="400"/> </span>
 <span> <img src="assets/images/tst-round-1-mockup.png"               alt="test evidence round 1"                 width="400"/> </span>
 <span> <img src="assets/images/tst-correct-answer-mockup.png"        alt="test evidence correct answer"          width="400"/> </span>
 <span> <img src="assets/images/tst-amazingly-fast-answer-mockup.png" alt="test evidence amazingly fast answer"   width="400"/> </span>
 <span> <img src="assets/images/tst-wrong-answer-mockup.png"          alt="test evidence wrong answer"            width="400"/> </span>
 <span> <img src="assets/images/tst-play-again-mockup.png"            alt="test evidence game over play again"    width="400"/> </span>
+
+
+### Validator Testing
+
+- HTML
+  - No errors were returned when passing the URI of the html page through the official [W3C Validator](https://validator.w3.org/):
+    - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fjmarcosdias.github.io%2Famazing%2Findex.html
+- CSS
+  - No errors were found when passing the URI of the styles.css file through the official [(Jigsaw) Validator](https://jigsaw.w3.org/css-validator/):
+    - https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjmarcosdias.github.io%2Famazing%2Findex.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en
+- JavaScript
+  - No errors were found when passing the final code in script.js through the Jshint linter [(Jshint) Linter](https://jshint.com/).
+  - The use of the Jshint helped with simplification of the code and also helped with the identification of small bugs like some missing semicolons, that were then fixed.
+
+### Unfixed Bugs
+
+The dev-testing strategy consisted in developing parts of the game, testing, fixing or improving any findings before continuing with the development.
+
+This way at the end there were no bugs to fix.
 
 
  
