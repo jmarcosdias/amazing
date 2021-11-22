@@ -229,12 +229,13 @@ Footer
 ****************************************************************************************/
 
 footer {
-    position: absolute;
-    top: 600px;
+    position: relative;
+    top: 20em;
     width: 100%;
     letter-spacing: 0.2em;
     font-size: xx-small;
     text-align: center;
+    color: gray;
 }
 
 /****************************************************************************************
