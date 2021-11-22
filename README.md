@@ -10,8 +10,38 @@ The <em>Amazingly Fast</em> users want to play an online game to practice the fo
 
 ## Owner's Goal
 
-The goal of <em>Amazingly Fast</em> is to bring fun to people while honing their arithmetic and memorization skills. 
+The goal of <em>Amazingly Fast</em> is to bring fun to people while improving their arithmetic and memorization skills. 
 
-Users will try to solve an arithmetic problem in each round, as quickly as possible, while needing to memorize the previous result, so that they can compare it with the result of the current problem. The owner hopes that this game will bring fun to its users.
+In each round, the users will need to solve an arithmetic problem, as quickly as possible. They will also need to memorize the previous result, to compare it with the result of the current problem. So it is a mix of arithmetic, memorization and luck. The owner hopes that this mix will bring fun to the users.
 
 ![Responsive Mockup](assets/images/tst-round-1-mockup.png)
+
+## Features 
+
+### Existing Features
+
+In construction
+
+### Future Features
+
+In a future release it is possible and expected that the following features will be implemented:
+
+<ul>
+<li>
+  <p>Ability to define the number of rounds.</p>
+  <p>Currently there are 10 rounds pre-defined and the user cannot change this.</p>
+</li>
+<li>
+  <p>Ability to define the range of numbers to use as operands.</p>
+  <p>Currently this range is defined as "integers from 1 to 10" and the user cannot change this.</p>
+</li>
+<li>
+  <p>Ability to define which operations are allowed.</p>
+  <p>Currently the four arithmethic operations are used.</p>
+  <p>For example if the user wants to practice only addition and subtraction, this future feature will help.</p>
+</li>
+</ul>
+
+
+ 
+
