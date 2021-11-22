@@ -128,6 +128,18 @@ The dev-testing strategy consisted in developing parts of the game, testing, fix
 
 This way at the end there were no bugs to fix.
 
+## Deployment
+
+The website was deployed to GitHub pages. The steps to deploy are as follows. 
+
+In the GitHub repository:
+  - Navigate to the Settings tab 
+  - Click on the Pages link on the bottom of the left menu
+  - Go to the source section drop-down menu
+  - Select the main branch 
+  - Save this change
+
+The live link for the <em>Amazingly Fast</em> math game can be found [here](https://jmarcosdias.github.io/amazing/).
 
  
 
