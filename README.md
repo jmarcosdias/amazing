@@ -22,7 +22,7 @@ In each round, the users will need to solve an arithmetic problem, as quickly as
 
 - The starting screen
 
-This is the first screen presented with a CSS animation making the title and the Yes button change color several times for 2 seconds. 
+This is the first screen with an animation that makes the title and the button change color passing through several colors for 2 seconds.
 
 The user can continue by clicking the Yes button.
 
@@ -30,12 +30,47 @@ The user can continue by clicking the Yes button.
 
 - First instruction to the user
 
-A first instruction is presented, asking the user to memorize a random problem. 
+A first instruction is presented, asking the user to memorize a random problem.
 
 The user can continue by clicking the Done button.
 
 ![Starting Screen](assets/images/doc-first-instruction.png)
 
+- The question each round and the score rules
+
+At each round the user needs to mentally solve a problem and compare the result with the previous one.
+
+A correct answer scores from 10 to 1000 points, depending on how faster it is given.
+  
+10 point means the user tooks about 10 seconds or more to answer correctly.
+
+1000 points means the correct answer was given in 100 miliseconds or less.
+
+![Starting Screen](assets/images/doc-round-1.png)
+
+- The message to the users when they answer correctly but not amazingly fast
+
+The intention here is to say "Yes, Nice" and inform how many points the user earned this round for this correct answer.
+
+![Starting Screen](assets/images/doc-correct-answer.png)
+
+- The message to the users when they answer correctly and amazingly fast
+
+The intention here is to say "Great! Well done!" and inform how many points the user earned this round for this amazingly fast and correct answer.
+
+![Starting Screen](assets/images/doc-amazingly-fast-answer.png)
+
+- The message to the users when they answer incorrectly
+
+The intention here is to encourage the user to do better next time
+
+![Starting Screen](assets/images/doc-wrong-answer.png)
+
+- The Game Over / Play Again screen
+
+Here the users can check their final score that is blinking in the right-bottom corner of the page and they can also click Play Again to start a new game.
+
+![Starting Screen](assets/images/doc-play-again.png)
 
 ### Future Features
 
