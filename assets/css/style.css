@@ -290,6 +290,19 @@ Rules for screen sizes from 1200px width and up and 800px height and up
 }
 
 /****************************************************************************************
+Rules for screen sizes from 700px width and up and 800px height and up
+****************************************************************************************/
+@media screen and (min-width: 700px) and (min-height: 800px) {
+    #container-title,
+    #container-message-to-user,
+    #container-random-problem,
+    .btn {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/****************************************************************************************
 Rules for screen sizes from 1400px width and up and 900px height and up
 ****************************************************************************************/
 @media screen and (min-width: 1400px) and (min-height: 900px) {
