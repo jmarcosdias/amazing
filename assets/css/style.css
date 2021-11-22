@@ -271,6 +271,25 @@ Rules for screen sizes from 700px wide and up
 }
 
 /****************************************************************************************
+Rules for screen sizes from 1200px width and up and 800px height and up
+****************************************************************************************/
+@media screen and (min-width: 1200px) and (min-height: 800px) {
+    #container-round,
+    #container-score {
+        position: absolute;
+        bottom: 0;
+    }
+
+    #container-round {
+        left: 0;
+    }
+
+    #container-score {
+        right: 0;
+    }
+}
+
+/****************************************************************************************
 Rules for screen sizes from 1400px width and up and 900px height and up
 ****************************************************************************************/
 @media screen and (min-width: 1400px) and (min-height: 900px) {
@@ -297,15 +316,5 @@ Rules for screen sizes from 1400px width and up and 900px height and up
     #container-score {
         font-size: x-large;
         letter-spacing: 0.2em;
-        position: absolute;
-        bottom: 0;
-    }
-
-    #container-round {
-        left: 0;
-    }
-
-    #container-score {
-        right: 0;
     }
 }
