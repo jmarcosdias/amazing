@@ -229,8 +229,8 @@ Footer
 ****************************************************************************************/
 
 footer {
-    position: relative;
-    top: 20em;
+    position: fixed;
+    bottom: 1em;
     width: 100%;
     letter-spacing: 0.2em;
     font-size: xx-small;
@@ -253,11 +253,6 @@ Rules for screen sizes from 400px width and 600px height and up
     #btn-same,
     #btn-higher {
         margin: 0 1rem;
-    }
-
-    footer {
-        position: fixed;
-        bottom: 1em;
     }
 }
 
@@ -371,5 +366,16 @@ Rules for screen sizes from 1400px width and 900px height and up
     #container-score {
         font-size: x-large;
         letter-spacing: 0.2em;
+    }
+}
+
+/****************************************************************************************
+Rules for screen 650px height or smaller
+****************************************************************************************/
+
+@media screen and (max-height: 650px) {
+    footer {
+        position: absolute;
+        top: 630px;
     }
 }
