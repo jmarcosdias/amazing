@@ -13,3 +13,5 @@ The <em>Amazingly Fast</em> users want to play an online game to practice the fo
 The goal of <em>Amazingly Fast</em> is to bring fun to people while honing their arithmetic and memorization skills. 
 
 Users will try to solve an arithmetic problem in each round, as quickly as possible, while needing to memorize the previous result, so that they can compare it with the result of the current problem. The owner hopes that this game will bring fun to its users.
+
+![Responsive Mockup](assets/images/tst-round-1-mockup.png)
