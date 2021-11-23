@@ -8,7 +8,7 @@
   
   Before the first round, a random math problem is presented to the user and the user is asked to memorize it.
   
-  Each round another random math problem is presented and the user is asked to answer if the result of this problem 
+  At each round, a random math problem is presented and the user is asked to answer if the result of this problem 
   is lower, same as or higher than the result of the previous problem.
 
   Each incorrect answer scores 0 points.
@@ -19,11 +19,8 @@
 
   1000 points means the correct answer was given in 100 miliseconds or less.
 
-  Here is the formula to calculate the number of points each round, for a correct answer, with timeToAnswer given 
-  in miliseconds: Math.max(Math.round(100000 / (Math.max(timeToAnswer, 100)), 0), 10).
-
-  This way the points for each correct answer start in 10 and can go up to 1000 and they are inversely proportional 
-  to the time taken to answer.
+  So the points earned for each correct answer vary from 10 to 1000 and they are inversely proportional to the 
+  time taken to answer.
 
   Developer Credit Notes
   ----------------------
@@ -41,7 +38,7 @@
 
   Developer         Date         Comments
   ----------------  -----------  -------------------------------------------------------------------------------------
-  Marcos Dias       22-NOV-2021  Initial creation
+  Marcos Dias       23-NOV-2021  Initial creation
 
  *********************************************************************************************************************/
 
