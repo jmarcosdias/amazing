@@ -50,19 +50,19 @@ A correct answer scores from 10 to 1000 points, depending on how faster it is gi
 
 - The message to the users when they answer correctly but not amazingly fast
 
-The intention here is to say "Yes, Nice" and inform how many points the user earned this round for this correct answer.
+The intention here is to say "Yes, Nice" and inform how many points the user earned this round for this correct answer and how fast the user answered.
 
 ![Starting Screen](assets/images/doc-correct-answer.png)
 
 - The message to the users when they answer correctly and amazingly fast
 
-The intention here is to say "Great! Well done!" and inform how many points the user earned this round for this amazingly fast and correct answer.
+The intention here is to say "Great! Well done!" and inform how many points the user earned this round for this amazingly fast and correct answer and how fast the user answered.
 
 ![Starting Screen](assets/images/doc-amazingly-fast-answer.png)
 
 - The message to the users when they answer incorrectly
 
-The intention here is to encourage the user to do better next time
+The intention here is to encourage the user to do better next time and inform the user scored 0 points in this round.
 
 ![Starting Screen](assets/images/doc-wrong-answer.png)
 
@@ -88,7 +88,7 @@ In a future release it is possible and expected that the following features will
 <li>
   <p>Ability to define which operations are allowed.</p>
   <p>Currently the four arithmethic operations are used.</p>
-  <p>For example if the user wants to practice only addition and subtraction, this future feature will help.</p>
+  <p>This feature will help users that prefer, for example, to practice only addition and subtraction.</p>
 </li>
 </ul>
 
@@ -98,8 +98,11 @@ In a future release it is possible and expected that the following features will
 
 The test approach consisted of validating on different browsers and devices, navigating, scrolling when possible, clicking in every link, changing the size of the viewport and trying to reproduce every scenario a user might come across. This to ensure that the website is working and looking good in all situations.
 
+Browsers used in testing procedures: Chrome, Firefox and Edge.
+
 ### <em>Am I Responsive</em> website
-For a summarized view of the game in different devices and in order not to tire readers of this document, please check below the tests that were also performed by playing the game in each screen inside the <em>Am I Responsive</em> web site.
+
+For a summarized view of the game in different devices and to not tire the readers of this document with excessive screenshots, I have included below some tests performed by playing the game in each virtual device inside the [Am I Responsive](http://ami.responsivedesign.is/) website.
 
 <span> <img src="assets/images/tst-starting-screen-mockup.png"       alt="test evidence starting screen"         width="400"/> </span>
 <span> <img src="assets/images/tst-first-instruction-mockup.png"     alt="test evidence first instruction"       width="400"/> </span>
@@ -108,7 +111,6 @@ For a summarized view of the game in different devices and in order not to tire 
 <span> <img src="assets/images/tst-amazingly-fast-answer-mockup.png" alt="test evidence amazingly fast answer"   width="400"/> </span>
 <span> <img src="assets/images/tst-wrong-answer-mockup.png"          alt="test evidence wrong answer"            width="400"/> </span>
 <span> <img src="assets/images/tst-play-again-mockup.png"            alt="test evidence game over play again"    width="400"/> </span>
-
 
 ### Validator Testing
 
@@ -119,12 +121,12 @@ For a summarized view of the game in different devices and in order not to tire 
   - No errors were found when passing the URI of the styles.css file through the official [(Jigsaw) Validator](https://jigsaw.w3.org/css-validator/):
     - https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjmarcosdias.github.io%2Famazing%2Findex.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en
 - JavaScript
-  - No errors were found when passing the final code in script.js through the Jshint linter [(Jshint) Linter](https://jshint.com/).
-  - The use of the Jshint helped with simplification of the code and also helped with the identification of small bugs like some missing semicolons, that were then fixed.
+  - No errors were found when passing the final code in script.js through the [(Jshint) Linter](https://jshint.com/).
+  - The use of the Jshint helped with simplification of the code and also helped identifying small bugs (some missing semicolons) that are fixed.
 
 ### Unfixed Bugs
 
-The dev-testing strategy consisted in developing parts of the game, testing, fixing or improving any findings before continuing with the development.
+The dev-testing strategy consisted in developing parts of the game, testing and then fixing or improving any findings before continuing with the development.
 
 This way at the end there were no bugs to fix.
 
@@ -147,19 +149,19 @@ In this section, I want to thank everyone involved directly or indirectly in thi
 
 ### Content 
 
-- The font used is a google font named Happy Monkey [Happy Monkey Google Font](https://fonts.google.com/specimen/Happy+Monkey)
+- The font used is a google font named [Happy Monkey](https://fonts.google.com/specimen/Happy+Monkey)
 
 ### Media
 
-- The following picture was taken from [Pixabay](https://pixabay.com). It is a free picture for commercial and noncommercial use.
+- The following picture was taken from [Pixabay](https://pixabay.com). It is a free picture for commercial and non-commercial use.
 
   - https://pixabay.com/vectors/numbers-numerals-counting-math-3691897/
     <div><img src="assets/images/numbers-circle.png" alt="A circle with colored numbers" width="200"/></div>
 
 ### Idea 
 
-- The original game idea was by Chris Fawcett, a friend of the developer. Chris suggested this idea to the developer so that the developer could implement it. Thanks Chris!
+- The original game idea was by Chris Fawcett, a friend of mine. Chris suggested me this idea so that I could implement it. Thanks Chris!
 
 ### Learning 
 
-- The developer learned a lot of HTML, CSS and JavaScript with Code Institute (CI), so he would like to thank CI for that and also thank his mentor, Chris Quinn, for the mentoring sessions.
+- I have learned a lot of HTML, CSS and JavaScript with Code Institute (CI), so I would like to thank CI for that and also thank my mentor, Chris Quinn, for the mentoring sessions.
