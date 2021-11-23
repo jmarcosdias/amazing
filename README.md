@@ -141,5 +141,25 @@ In the GitHub repository:
 
 The live link for the <em>Amazingly Fast</em> math game can be found [here](https://jmarcosdias.github.io/amazing/).
 
- 
+## Credits 
 
+In this section, I want to thank everyone involved directly or indirectly in this project.
+
+### Content 
+
+- The font used is a google font named Happy Monkey [Happy Monkey Google Font](https://fonts.google.com/specimen/Happy+Monkey)
+
+### Media
+
+- The following picture was taken from [Pixabay](https://pixabay.com). It is a free picture for commercial and noncommercial use.
+
+  - https://pixabay.com/vectors/numbers-numerals-counting-math-3691897/
+    <div><img src="assets/images/numbers-circle.png" alt="A circle with colored numbers" width="200"/></div>
+
+### Idea 
+
+- The original game idea was by Chris Fawcett, a friend of the developer. Chris suggested this idea to the developer so that the developer could implement it. Thanks Chris!
+
+### Learning 
+
+- The developer learned a lot of HTML, CSS and JavaScript with Code Institute (CI), so he would like to thank CI for that and also thank his mentor, Chris Quinn, for the mentoring sessions.
